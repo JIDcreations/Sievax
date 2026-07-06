@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sievax Academy — Data &amp; AI Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#FEE447;
+    --yellow-deep:#F5D000;
+    --black:#111111;
+    --ink:#1A1A1A;
+    --ink-soft:#3D3D3D;
+    --white:#FFFFFF;
+    --paper:#FBFAF7;
+    --paper-dim:#F1EFE8;
+    --grey:#6B6B6B;
+    --grey-light:#9A9A9A;
+    --line:rgba(17,17,17,.12);
+    --line-dark:rgba(255,255,255,.14);
+    --display:'Space Grotesk',sans-serif;
+    --body:'Inter',sans-serif;
+    --maxw:1140px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  a{color:inherit}
+  h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.05;letter-spacing:-.02em}
+  .eyebrow{font-family:var(--display);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);display:inline-flex;align-items:center;gap:9px}
+  .eyebrow::before{content:"";width:22px;height:8px;border-radius:2px;background:var(--yellow);display:inline-block}
+  .disc{width:36px;height:36px;border-radius:50%;background:var(--yellow);display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .disc svg{width:20px;height:20px}
+  .ratio{display:flex;width:100%;height:100%;border-radius:3px;overflow:hidden}
+  .ratio .r20{background:var(--yellow);flex:0 0 20%}
+  .ratio .r80{background:var(--black);flex:0 0 80%}
+  nav{position:sticky;top:0;z-index:50;background:rgba(251,250,247,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{font-family:var(--display);font-weight:700;font-size:1.2rem;letter-spacing:-.01em;display:flex;align-items:center;gap:11px}
+  .nav-cta{font-family:var(--display);font-weight:600;font-size:.85rem;background:var(--yellow);color:var(--black);padding:11px 20px;border-radius:999px;text-decoration:none;transition:background .2s,transform .15s}
+  .nav-cta:hover{background:var(--yellow-deep);transform:translateY(-1px)}
+  .nav-links{display:flex;gap:28px;font-size:.9rem;font-weight:500}
+  .nav-links a{text-decoration:none;color:var(--grey);transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .hero{padding:90px 0 70px}
+  .hero h1{font-size:clamp(2.7rem,6.8vw,4.8rem);font-weight:700}
+  .hero h1 .hl{position:relative;white-space:nowrap}
+  .hero h1 .hl::after{content:"";position:absolute;left:-2px;right:-2px;bottom:.08em;height:.34em;background:var(--yellow);z-index:-1;border-radius:2px}
+  .hero .sub{font-size:1.18rem;color:var(--ink-soft);max-width:31em;margin-top:28px}
+  .hero .sub b{color:var(--ink);font-weight:600}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:36px}
+  .btn{font-family:var(--display);font-weight:600;font-size:1rem;text-decoration:none;display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:999px;transition:transform .15s,background .2s,border-color .2s}
+  .btn-primary{background:var(--yellow);color:var(--black)}
+  .btn-primary:hover{background:var(--yellow-deep);transform:translateY(-2px)}
+  .btn-dark{background:var(--black);color:var(--white)}
+  .btn-dark:hover{background:#000;transform:translateY(-2px)}
+  .btn-ghost{border:1.5px solid var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--ink)}
+  .hero-meta{font-family:var(--display);font-size:.9rem;color:var(--grey);font-weight:500;margin-top:26px}
+  .hero-meta b{color:var(--ink);font-weight:600}
+  .thesis{margin-top:60px;border:1px solid var(--line);border-radius:16px;background:var(--white);overflow:hidden;box-shadow:0 1px 0 rgba(17,17,17,.04)}
+  .thesis-bar{height:66px;display:flex}
+  .thesis-bar .t20{background:var(--yellow);flex:0 0 20%;display:flex;align-items:center;justify-content:center;color:var(--black);font-family:var(--display);font-weight:700;font-size:1.1rem}
+  .thesis-bar .t80{background:var(--black);flex:0 0 80%;display:flex;align-items:center;justify-content:center;color:var(--white);font-family:var(--display);font-weight:700;font-size:1.1rem}
+  .thesis-legend{display:flex;font-size:.92rem;color:var(--grey)}
+  .thesis-legend>div{padding:16px 22px}
+  .thesis-legend .l20{flex:0 0 20%;border-right:1px solid var(--line);color:var(--ink);font-weight:600;min-width:max-content}
+  .thesis-legend .l80{flex:1}
+  section{padding:84px 0}
+  .sec-head{max-width:34em;margin-bottom:48px}
+  .sec-head h2{font-size:clamp(1.9rem,4vw,2.8rem);margin-top:16px}
+  .sec-head p{color:var(--ink-soft);font-size:1.08rem;margin-top:18px}
+  .problem{background:var(--black);color:var(--white)}
+  .problem .eyebrow{color:var(--white)}
+  .problem h2{color:var(--white)}
+  .problem .cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:8px}
+  .problem p{color:#C9C9C9;font-size:1.05rem}
+  .problem .big{font-family:var(--display);font-size:1.5rem;font-weight:500;color:var(--white);line-height:1.3}
+  .problem .big .accent{background:var(--yellow);color:var(--black);padding:0 .15em;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  .aud-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:start}
+  .aud-card{border:1px solid var(--line);border-radius:16px;padding:32px;background:var(--white)}
+  .aud-card.no{background:var(--paper-dim);border-style:dashed}
+  .aud-card h3{font-size:1.18rem;margin-bottom:14px;display:flex;align-items:center;gap:11px}
+  .aud-card .dot{width:11px;height:11px;border-radius:50%;background:var(--yellow);border:1.5px solid var(--black)}
+  .aud-card.no .dot{background:transparent;border-color:var(--grey-light)}
+  .aud-card p{color:var(--ink-soft)}
+  .outcomes{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .out-list{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .out-item{background:var(--white);padding:28px 30px;display:flex;gap:18px;align-items:flex-start}
+  .out-item .num{font-family:var(--display);font-weight:700;font-size:.95rem;flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--yellow);color:var(--black);display:flex;align-items:center;justify-content:center}
+  .out-item p{font-size:1.04rem;color:var(--ink)}
+  .fmt{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:34px}
+  .fmt .pill{font-family:var(--display);font-size:.85rem;font-weight:500;border:1.5px solid var(--line);border-radius:999px;padding:8px 17px;color:var(--ink-soft)}
+  .fmt .pill b{color:var(--ink)}
+  .modules{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .mod{background:var(--paper);display:grid;grid-template-columns:84px 1fr;gap:24px;padding:24px 28px;align-items:center;transition:background .2s}
+  .mod:hover{background:var(--white)}
+  .mod .mbar{height:36px}
+  .mod .mtitle{font-family:var(--display);font-weight:600;font-size:1.12rem}
+  .mod .mtitle span{display:block;font-family:var(--body);font-weight:400;font-size:.96rem;color:var(--grey);margin-top:3px}
+  .trainer{background:var(--black);color:var(--white)}
+  .trainer .eyebrow{color:var(--white)}
+  .tr-grid{display:grid;grid-template-columns:200px 1fr;gap:44px;align-items:start}
+  .tr-photo{aspect-ratio:1;border-radius:16px;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:3rem;color:var(--black)}
+  .trainer h2{color:var(--white);font-size:clamp(1.8rem,4vw,2.6rem)}
+  .trainer p{color:#C9C9C9;font-size:1.08rem;margin-top:18px}
+  .tr-proof{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+  .tr-proof span{font-family:var(--display);font-size:.82rem;font-weight:500;border:1px solid var(--line-dark);border-radius:999px;padding:7px 15px;color:var(--white)}
+  .enroll{background:var(--yellow)}
+  .enroll .eyebrow{color:var(--black)}
+  .enroll .eyebrow::before{background:var(--black)}
+  .enroll h2{color:var(--black)}
+  .enroll-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch}
+  .panel{background:var(--white);color:var(--ink);border-radius:18px;padding:36px;border:1px solid rgba(17,17,17,.08)}
+  .panel h3{font-size:1.3rem;margin-bottom:22px}
+  .facts{list-style:none}
+  .facts li{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);font-size:1rem}
+  .facts li:last-child{border-bottom:none}
+  .facts .k{color:var(--grey);font-weight:500}
+  .facts .v{font-family:var(--display);font-weight:600;text-align:right}
+  .price-big{font-family:var(--display);font-weight:700;font-size:3.4rem;line-height:1;letter-spacing:-.03em}
+  .price-sub{color:var(--grey);font-size:.96rem;margin-top:8px}
+  .early{margin-top:22px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px;font-size:.95rem}
+  .early b{color:var(--ink)}
+  .early .tag{background:var(--yellow);padding:1px 7px;border-radius:4px;font-family:var(--display);font-weight:600}
+  .panel .btn{margin-top:26px;width:100%;justify-content:center}
+  details{border-bottom:1px solid var(--line)}
+  details summary{font-family:var(--display);font-weight:600;font-size:1.08rem;cursor:pointer;list-style:none;padding:20px 0;display:flex;justify-content:space-between;align-items:center;gap:20px}
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"+";width:24px;height:24px;flex:0 0 auto;border-radius:50%;background:var(--yellow);color:var(--black);display:flex;align-items:center;justify-content:center;font-size:1.1rem;line-height:1}
+  details[open] summary::after{content:"–"}
+  details p{color:var(--ink-soft);padding:0 0 22px;max-width:48em}
+  .final{background:var(--black);color:var(--white);text-align:center}
+  .final h2{color:var(--white);font-size:clamp(2rem,5vw,3.2rem);max-width:16em;margin:0 auto}
+  .final h2 .hl{position:relative;white-space:nowrap}
+  .final h2 .hl::after{content:"";position:absolute;left:-2px;right:-2px;bottom:.08em;height:.34em;background:var(--yellow);z-index:-1;border-radius:2px}
+  .final .seats{font-family:var(--display);color:var(--yellow);font-weight:600;letter-spacing:.04em;margin:22px 0 30px}
+  footer{padding:40px 0;border-top:1px solid var(--line);font-size:.88rem;color:var(--grey)}
+  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center}
+  footer a{text-decoration:none;color:var(--grey);font-weight:500}
+  footer a:hover{color:var(--ink)}
+  @media(max-width:820px){
+    .nav-links{display:none}
+    .problem .cols,.aud-grid,.out-list,.tr-grid,.enroll-grid{grid-template-columns:1fr}
+    .tr-photo{width:140px}
+    section{padding:60px 0}
+    .hero{padding:54px 0 46px}
+    .thesis-legend{flex-direction:column}
+    .thesis-legend .l20{flex:none;border-right:none;border-bottom:1px solid var(--line)}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap nav-inner">
+    <div class="brand">
+      <span class="disc">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M62 30c-6-7-18-7-24 0-5 6-3 14 4 18l12 6c7 4 9 12 4 18-6 7-18 7-24 0" stroke="#111" stroke-width="9" stroke-linecap="round"/>
+          <path d="M44 24c-5 5-5 13 0 18" stroke="#111" stroke-width="9" stroke-linecap="round" opacity=".55"/>
+        </svg>
+      </span>
+      sievax<span style="color:var(--grey)">.academy</span>
+    </div>
+    <div class="nav-links">
+      <a href="#problem">The gap</a>
+      <a href="#program">Program</a>
+      <a href="#trainer">Trainer</a>
+      <a href="#enroll">Pricing</a>
+    </div>
+    <a class="nav-cta" href="#enroll">Join the cohort</a>
+  </div>
+</nav>
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Live cohort-based academy · worldwide</span>
+    <h1 style="margin-top:22px">AI is everywhere.<br><span class="hl">Fluency isn't.</span></h1>
+    <p class="sub">A live, cohort-based academy for the leaders building real Data &amp; AI strategy — ensuring your investments deliver business value, not just technical outputs. <b>Most of the work is people, process and organization. Only a fraction is the tech.</b></p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#enroll">Join the next cohort →</a>
+      <a class="btn btn-ghost" href="#program">See the program</a>
+    </div>
+    <p class="hero-meta">Next cohort starts <b>[date]</b> &nbsp;·&nbsp; <b>20</b> seats &nbsp;·&nbsp; Online, every quarter</p>
+    <div class="thesis">
+      <div class="thesis-bar">
+        <div class="t20">20%</div>
+        <div class="t80">80%</div>
+      </div>
+      <div class="thesis-legend">
+        <div class="l20">The AI</div>
+        <div class="l80">Everything else — strategy, ownership, data foundations, change, people. The part nobody trains for. The part this academy is built around.</div>
+      </div>
+    </div>
+  </div>
+</header>
+<section class="problem" id="problem">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">The gap</span>
+      <h2>Everyone has the tools.<br>Almost no one has the strategy.</h2>
+    </div>
+    <div class="cols">
+      <p>Most organizations have already bought the AI. They have the licenses, the pilots, the enthusiasm. And still nothing changes — because the hard part was never the technology.</p>
+      <p class="big">The hard part is alignment, ownership, data foundations, change resistance, and people who don't yet know how to work differently. <span class="accent">That's the 80% nobody trains for.</span></p>
+    </div>
+  </div>
+</section>
+<section id="audience">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Who it's for</span>
+      <h2>Built for the people who make AI land</h2>
+    </div>
+    <div class="aud-grid">
+      <div class="aud-card">
+        <h3><span class="dot"></span>This is for you</h3>
+        <p>You're a data leader, CDO, architect, consultant or transformation lead responsible for making AI actually land in your organization — not just demo well. You've seen pilots stall. You want a strategy that survives contact with reality.</p>
+      </div>
+      <div class="aud-card no">
+        <h3><span class="dot"></span>This isn't for you</h3>
+        <p>If you're looking for a hands-on model-training or coding bootcamp, this isn't it. The academy is about strategy and organizational readiness — not building the models yourself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="outcomes" id="outcomes">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Outcomes</span>
+      <h2>What you'll walk away with</h2>
+    </div>
+    <div class="out-list">
+      <div class="out-item"><span class="num">1</span><p>A Data &amp; AI strategy you can defend to your board.</p></div>
+      <div class="out-item"><span class="num">2</span><p>A clear operating model: who owns what, and how decisions get made.</p></div>
+      <div class="out-item"><span class="num">3</span><p>A framework to assess and build organizational AI readiness.</p></div>
+      <div class="out-item"><span class="num">4</span><p>The change-management playbook to move people from resistance to adoption.</p></div>
+      <div class="out-item"><span class="num">5</span><p>A method to prioritize use cases by impact, not hype.</p></div>
+      <div class="out-item"><span class="num">6</span><p>A peer network of leaders facing the same challenges.</p></div>
+    </div>
+  </div>
+</section>
+<section id="program">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">The program</span>
+      <h2>How the cohort works</h2>
+      <p>Live online sessions over six weeks, capped at 20 participants so every voice is in the room. Each bar shows the same truth: a sliver of tech, a lot of everything else.</p>
+    </div>
+    <div class="fmt">
+      <span class="pill"><b>6</b> weeks</span>
+      <span class="pill"><b>1</b> live session / week</span>
+      <span class="pill"><b>20</b> seats max</span>
+      <span class="pill">Sessions <b>recorded</b></span>
+      <span class="pill">Language <b>English</b></span>
+    </div>
+    <div class="modules">
+      <div class="mod"><div class="mbar"><span class="ratio"><span class="r20"></span><span class="r80"></span></span></div><div class="mtitle">Foundations<span>Why most of the work is everything except the model</span></div></div>
+      <div class="mod"><div class="mbar"><span class="ratio"><span class="r20"></span><span class="r80"></span></span></div><div class="mtitle">Building the strategy<span>From ambition to a defensible plan</span></div></div>
+      <div class="mod"><div class="mbar"><span class="ratio"><span class="r20"></span><span class="r80"></span></span></div><div class="mtitle">The operating model<span>Ownership, decision rights, accountability</span></div></div>
+      <div class="mod"><div class="mbar"><span class="ratio"><span class="r20"></span><span class="r80"></span></span></div><div class="mtitle">Data readiness<span>The foundations that make or break delivery</span></div></div>
+      <div class="mod"><div class="mbar"><span class="ratio"><span class="r20"></span><span class="r80"></span></span></div><div class="mtitle">Change &amp; adoption<span>Moving people from resistance to momentum</span></div></div>
+      <div class="mod"><div class="mbar"><span class="ratio"><span class="r20"></span><span class="r80"></span></span></div><div class="mtitle">From pilot to impact<span>Scaling beyond the proof of concept</span></div></div>
+    </div>
+  </div>
+</section>
+<section class="trainer" id="trainer">
+  <div class="wrap">
+    <div class="tr-grid">
+      <div class="tr-photo">JM</div>
+      <div>
+        <span class="eyebrow">Who's teaching</span>
+        <h2 style="margin-top:14px">A decade of turning ambition into results</h2>
+        <p>I'm [name] — I've spent over a decade helping organizations turn Data &amp; AI ambitions into outcomes, drawing from my own experiences guiding leaders through real transformations. I hold a PhD in Human-Computer Interaction, lecture at university level, and deliver keynotes and masterclasses across Europe. This academy distills everything I teach in the room into a format you can join from anywhere in the world.</p>
+        <div class="tr-proof">
+          <span>PhD, Human-Computer Interaction</span>
+          <span>Guest lecturer</span>
+          <span>Keynote speaker</span>
+          <span>10+ years in the field</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="enroll" id="enroll">
+  <div class="wrap">
+    <div class="sec-head" style="max-width:none">
+      <span class="eyebrow">Next cohort</span>
+      <h2>Claim one of 20 seats</h2>
+    </div>
+    <div class="enroll-grid">
+      <div class="panel">
+        <h3>Cohort details</h3>
+        <ul class="facts">
+          <li><span class="k">Starts</span><span class="v">[date]</span></li>
+          <li><span class="k">Duration</span><span class="v">6 weeks</span></li>
+          <li><span class="k">Seats</span><span class="v">20 — kept small on purpose</span></li>
+          <li><span class="k">Where</span><span class="v">Online, live</span></li>
+          <li><span class="k">Language</span><span class="v">English</span></li>
+          <li><span class="k">Certificate</span><span class="v">On completion</span></li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Investment</h3>
+        <div class="price-big">€[X]</div>
+        <div class="price-sub">per seat · invoiced to you or your organization</div>
+        <div class="early"><span class="tag">Early-bird</span> <b>the first [N]</b> to join this cohort save €[X].</div>
+        <a class="btn btn-dark" href="#apply">Apply for a seat →</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Questions</span>
+      <h2>Good to know before you apply</h2>
+    </div>
+    <div>
+      <details open><summary>What language is the program in?</summary><p>English, so participants can join from anywhere in the world.</p></details>
+      <details><summary>Do I need a technical background?</summary><p>No. This is a strategy and leadership program, not a coding course. You'll work on the organizational side of Data &amp; AI.</p></details>
+      <details><summary>What if I miss a live session?</summary><p>Every live session is recorded, so you can catch up without losing your place in the cohort.</p></details>
+      <details><summary>What timezone are the sessions in?</summary><p>[timezone] — chosen to stay workable across [regions]. Recordings cover the rest.</p></details>
+      <details><summary>Is there a certificate?</summary><p>Yes — you receive a certificate of completion at the end of the cohort.</p></details>
+      <details><summary>Can my employer pay?</summary><p>Yes. We invoice organizations directly, and many participants expense the program.</p></details>
+    </div>
+  </div>
+</section>
+<section class="final" id="apply">
+  <div class="wrap">
+    <h2>Ready to build a strategy that <span class="hl">actually lands?</span></h2>
+    <p class="seats">Only 20 seats · Next cohort starts [date]</p>
+    <a class="btn btn-primary" href="#">Join the next cohort →</a>
+  </div>
+</section>
+<footer>
+  <div class="wrap foot-inner">
+    <div>© 2026 Sievax Academy · An initiative by <a href="https://sievax.be">Sievax</a></div>
+    <div><a href="mailto:hello@sievax.academy">hello@sievax.academy</a></div>
+  </div>
+</footer>
+</body>
+</html>
