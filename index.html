@@ -30,7 +30,7 @@
     --ink:#111111;
     --paper:#FFFFFF;
     --board:#FCFCFA;              /* whiteboard off-white */
-    --muted:rgba(17,17,17,.62);
+    --muted:rgba(17,17,17,.72);
     --line:rgba(17,17,17,.14);
     --grid:rgba(17,17,17,.045);   /* faint graph-paper lines */
     --disp:'arial',Arial,'Helvetica Neue',sans-serif;  /* Typekit "Areal" (brand display) */
@@ -53,6 +53,11 @@
 
   .wrap{max-width:1400px;margin:0 auto;padding:0 clamp(22px,4.5vw,72px)}
   section{padding:clamp(60px,8.5vw,108px) 0;position:relative}
+
+  /* skip link — visible on keyboard focus */
+  .skip-link{position:absolute;left:16px;top:-60px;z-index:100;background:var(--ink);color:#fff;font-family:var(--disp);font-weight:700;font-size:14px;padding:12px 18px;border-radius:8px;text-decoration:none;transition:top .16s}
+  .skip-link:focus{top:14px;outline:3px solid var(--yellow);outline-offset:2px}
+  main:focus{outline:none}
 
   /* focus + motion floor */
   a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:2px}
@@ -92,14 +97,20 @@
   .on-ink .sec-lead{color:rgba(255,255,255,.72)}
 
   /* NAV — light, notebook rule */
-  nav{position:sticky;top:0;z-index:60;background:rgba(252,252,250,.86);backdrop-filter:blur(10px);border-bottom:1.5px solid var(--ink)}
+  nav{position:sticky;top:0;z-index:60;background:var(--board);border-bottom:1.5px solid var(--ink)}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
   .nav-inner .logo{height:26px;width:auto}
   .nav-links{display:flex;align-items:center;gap:30px;font-size:15px;font-weight:600}
-  .nav-links a{color:var(--muted);text-decoration:none;transition:color .16s}
+  .nav-links a:not(.nav-cta){color:var(--muted);text-decoration:none;transition:color .16s;display:inline-flex;align-items:center;padding:12px 4px}
   .nav-links a:hover{color:var(--ink)}
   .nav-cta{font-family:var(--disp);font-weight:700;font-size:14px;background:var(--yellow);color:var(--ink);padding:10px 20px;border-radius:7px;text-decoration:none;border:1.5px solid var(--ink);box-shadow:2px 2px 0 var(--ink);transition:transform .16s,box-shadow .16s}
   .nav-cta:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink)}
+  /* hamburger toggle — hidden on desktop */
+  .nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:46px;height:46px;padding:0;background:transparent;border:1.5px solid var(--ink);border-radius:8px;cursor:pointer}
+  .nav-toggle span{display:block;width:20px;height:2.5px;background:var(--ink);border-radius:2px;margin:0 auto;transition:transform .2s,opacity .2s}
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
 
   /* HERO — the whiteboard */
   .hero{background:
@@ -121,7 +132,7 @@
   /* enrol index-card */
   .enroll{margin-top:48px;display:flex;flex-wrap:wrap;align-items:stretch;background:var(--ink);color:#fff;border-radius:12px;overflow:hidden;max-width:1080px;border:1.5px solid var(--ink);box-shadow:6px 6px 0 rgba(17,17,17,.14)}
   .enroll .stub{background:var(--yellow);color:var(--ink);padding:20px 26px;display:flex;flex-direction:column;justify-content:center;border-right:1.5px solid var(--ink)}
-  .enroll .stub .k{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.72}
+  .enroll .stub .k{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
   .enroll .stub .v{font-family:var(--disp);font-weight:700;font-size:23px;margin-top:2px}
   .enroll-facts{flex:1;display:flex;flex-wrap:wrap;align-items:center;gap:34px;padding:20px 30px}
   .enroll-facts .lab{font-size:11.5px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.08em}
@@ -217,6 +228,9 @@
   .convert-head{text-align:center;margin-bottom:44px}
   .convert-head h2{font-size:clamp(30px,4.8vw,50px)}
   .convert-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:26px;align-items:start}
+  .convert-alt{text-align:center;margin-top:36px;font-family:var(--disp);font-weight:600;font-size:16px;color:rgba(255,255,255,.82)}
+  .convert-alt a{color:var(--yellow);text-decoration:none;font-weight:700;border-bottom:2px solid rgba(254,228,71,.45);padding-bottom:1px;transition:border-color .16s}
+  .convert-alt a:hover{border-color:var(--yellow)}
   .info-card{background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.22);border-radius:10px;padding:30px;color:#fff}
   .price-row{display:flex;align-items:baseline;gap:14px}
   .price-row .big{font-family:var(--disp);font-weight:700;font-size:52px;color:var(--yellow);line-height:1}
@@ -228,22 +242,29 @@
   .facts .fk{color:rgba(255,255,255,.62)}
   .facts .fv{font-family:var(--disp);font-weight:700}
   .form-card{background:var(--yellow);border:1.5px solid #000;border-radius:10px;padding:clamp(28px,3vw,36px);color:var(--ink);box-shadow:8px 8px 0 rgba(0,0,0,.35)}
-  .form-card h3{font-size:26px}
-  .form-card .fl{font-size:15px;color:rgba(17,17,17,.72);margin-top:8px}
+  .form-card h3{font-size:26px;color:var(--ink)}
+  .form-card .fl{font-size:15px;color:rgba(17,17,17,.86);margin-top:8px}
   .form-card form{margin-top:22px;display:flex;flex-direction:column;gap:12px}
-  .form-card input,.form-card textarea{font-family:var(--body);font-size:15px;padding:14px 15px;border:1.5px solid var(--ink);border-radius:8px;background:#fff;outline:none;width:100%}
+  .form-card input,.form-card textarea{font-family:var(--body);font-size:15px;padding:22px 15px 8px;border:1.5px solid var(--ink);border-radius:8px;background:#fff;outline:none;width:100%}
   .form-card input:focus,.form-card textarea:focus{outline:3px solid var(--ink);outline-offset:1px}
+  /* floating labels — persistent, so context stays while typing */
+  .field{position:relative}
+  .field label{position:absolute;left:16px;top:15px;font-size:15px;color:rgba(17,17,17,.72);pointer-events:none;transition:top .14s,font-size .14s,color .14s}
+  .field input:focus + label,
+  .field input:not(:placeholder-shown) + label,
+  .field textarea:focus + label,
+  .field textarea:not(:placeholder-shown) + label{top:7px;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
   .form-card textarea{resize:vertical}
   .form-card button.btn{width:100%;justify-content:center;font-size:16px;margin-top:4px}
   .divider{display:flex;align-items:center;gap:12px;margin-top:20px}
   .divider .ln{flex:1;height:1.5px;background:rgba(17,17,17,.3)}
-  .divider span{font-size:13px;color:rgba(17,17,17,.6);font-family:var(--disp);font-weight:700}
+  .divider span{font-size:13px;color:rgba(17,17,17,.85);font-family:var(--disp);font-weight:700}
   .calendly-btn{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:16px;text-decoration:none;font-family:var(--disp);font-weight:700;font-size:15px;color:var(--ink);border:1.5px solid var(--ink);border-radius:8px;padding:13px;background:#fff;transition:background .16s,color .16s}
   .calendly-btn:hover{background:var(--ink);color:var(--yellow)}
   .success{display:none;text-align:center;padding:30px 10px}
   .success .check{width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--yellow);border:1.5px solid #000;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto}
-  .success h3{font-size:22px;margin-top:16px}
-  .success p{font-size:15px;color:rgba(17,17,17,.72);margin-top:8px}
+  .success h3{font-size:22px;margin-top:16px;color:var(--ink)}
+  .success p{font-size:15px;color:rgba(17,17,17,.85);margin-top:8px}
 
   /* FAQ */
   details{border-bottom:1.5px solid var(--line)}
@@ -286,7 +307,11 @@
     .stop:not(:last-child)::before{content:"";position:absolute;left:22px;bottom:-52px;width:24px;height:52px;transform:translateX(-50%);background:var(--arrD) center/contain no-repeat;z-index:2}
   }
   @media(max-width:720px){
-    .nav-links a:not(.nav-cta){display:none}
+    .nav-toggle{display:flex}
+    .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:8px;background:var(--board);border-bottom:1.5px solid var(--ink);padding:14px clamp(22px,4.5vw,72px) 20px;box-shadow:0 16px 28px -14px rgba(0,0,0,.35);display:none}
+    .nav-links.open{display:flex}
+    .nav-links a:not(.nav-cta){padding:12px 2px;font-size:17px;border-bottom:1px solid var(--line)}
+    .nav-links .nav-cta{margin-top:6px;text-align:center;justify-content:center;box-shadow:2px 2px 0 var(--ink)}
     .enroll{flex-direction:column;align-items:stretch}
     .enroll .stub{border-right:none;border-bottom:1.5px solid var(--ink)}
     .enroll-go{justify-content:center;padding:16px;border-left:none;border-top:1.5px solid var(--ink)}
@@ -297,10 +322,15 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to content</a>
+
 <nav>
   <div class="wrap nav-inner">
     <a href="#top" aria-label="Sievax Academy — home"><img class="logo" src="assets/logo-black.png" alt="Sievax Academy"></a>
-    <div class="nav-links">
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navmenu" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navmenu">
       <a href="#gap">The gap</a>
       <a href="#program">Program</a>
       <a href="#trainer">Trainer</a>
@@ -308,6 +338,8 @@
     </div>
   </div>
 </nav>
+
+<main id="main" tabindex="-1">
 
 <!-- HERO -->
 <header class="hero" id="top">
@@ -322,7 +354,7 @@
     <div class="enroll rise d5">
       <div class="stub"><div class="k">Enrolling now</div><div class="v">Cohort 01</div></div>
       <div class="enroll-facts">
-        <div><div class="lab">Starts</div><div class="val">[date]</div></div>
+        <div><div class="lab">Starts</div><div class="val"><!-- replace with cohort start date -->Announced soon</div></div>
         <div><div class="lab">Seats left</div><div class="val">20</div></div>
         <div><div class="lab">Format</div><div class="val">6 weeks &middot; online</div></div>
       </div>
@@ -430,7 +462,7 @@
       <div>
         <div class="play"><span></span></div>
         <div style="font-family:var(--disp);font-weight:700;margin-top:16px;font-size:16px">Watch: Jan explains the academy</div>
-        <div style="font-size:12.5px;color:rgba(255,255,255,.55);margin-top:5px;font-family:var(--disp)">[ YouTube embed — add video URL ]</div>
+        <div style="font-size:12.5px;color:rgba(255,255,255,.72);margin-top:5px;font-family:var(--disp)">[ YouTube embed — add video URL ]</div>
       </div>
     </div>
     <div class="tr-copy">
@@ -468,14 +500,15 @@
     <div class="convert-grid">
       <div style="display:flex;flex-direction:column;gap:20px">
         <div class="info-card">
-          <div class="price-row"><div class="big">&euro;[X]</div><div class="note">per seat<br>invoiced to your org</div></div>
-          <div class="early">Early-bird: the first [N] to join save &euro;[X].</div>
+          <div class="price-row"><div class="big"><!-- replace with price, e.g. &euro;1,950 -->On request</div><div class="note">per seat<br>invoiced to your org</div></div>
+          <div class="early"><!-- replace with specifics, e.g. the first 5 to join save &euro;300 -->Early-bird rate for the first sign-ups — ask us.</div>
         </div>
         <div class="info-card">
           <ul class="facts">
-            <li><span class="fk">Starts</span><span class="fv">[date]</span></li>
+            <li><span class="fk">Starts</span><span class="fv"><!-- replace with cohort start date -->Announced soon</span></li>
             <li><span class="fk">Duration</span><span class="fv">6 weeks</span></li>
             <li><span class="fk">Where</span><span class="fv">Online, live</span></li>
+            <li><span class="fk">Cadence</span><span class="fv">New cohort each quarter</span></li>
             <li><span class="fk">Certificate</span><span class="fv">On completion</span></li>
           </ul>
         </div>
@@ -494,22 +527,33 @@
           <input type="hidden" name="_subject" value="New Sievax Academy lead">
           <!-- honeypot: hidden from humans, catches spam bots -->
           <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
-          <input name="name" required placeholder="Full name" aria-label="Full name">
-          <input name="email" type="email" required placeholder="Work email" aria-label="Work email">
-          <input name="organisation" placeholder="Organisation / role" aria-label="Organisation or role">
-          <textarea name="message" rows="3" placeholder="What do you want to get out of the cohort? (optional)" aria-label="What do you want to get out of the cohort?"></textarea>
+          <div class="field">
+            <input id="f-name" name="name" required placeholder=" ">
+            <label for="f-name">Full name</label>
+          </div>
+          <div class="field">
+            <input id="f-email" name="email" type="email" required placeholder=" ">
+            <label for="f-email">Work email</label>
+          </div>
+          <div class="field">
+            <input id="f-org" name="organisation" placeholder=" ">
+            <label for="f-org">Organisation / role</label>
+          </div>
+          <div class="field">
+            <textarea id="f-msg" name="message" rows="3" placeholder=" "></textarea>
+            <label for="f-msg">Your goal for the cohort (optional)</label>
+          </div>
           <button type="submit" class="btn btn-dark">Request your seat &rarr;</button>
         </form>
-        <div class="success" id="leadSuccess">
+        <div class="success" id="leadSuccess" role="status" aria-live="polite" tabindex="-1">
           <div class="check">&#10003;</div>
           <h3>Thanks — you're on the list.</h3>
           <p>We'll email you within one business day.</p>
         </div>
-        <div class="divider"><span class="ln"></span><span>or</span><span class="ln"></span></div>
-        <!-- Calendly — same integration as sievax.be (briefing 3.2) -->
-        <a class="calendly-btn" href="https://calendly.com/jan-sievax/call-30-jan" target="_blank" rel="noopener">Book a call on Calendly</a>
       </div>
     </div>
+    <!-- Secondary path: book a call, kept out of the form so the form has one clear job. Same Calendly as sievax.be (briefing 3.2). -->
+    <p class="convert-alt">Not ready to apply? <a href="https://calendly.com/jan-sievax/call-30-jan" target="_blank" rel="noopener">Book a 30-min call with Jan first &rarr;</a></p>
   </div>
 </section>
 
@@ -528,12 +572,14 @@
 <section class="final">
   <div class="wrap">
     <h2>Ready to build a strategy that <span class="uline">actually lands</span>?</h2>
-    <p class="seats">Only 20 seats &middot; Next cohort starts [date]</p>
+    <p class="seats">Only 20 seats &middot; Next cohort dates announced soon</p>
     <a class="btn btn-dark" href="#apply">Reserve your seat &rarr;</a>
   </div>
 </section>
 
 <!-- FOOTER -->
+</main>
+
 <footer class="on-ink">
   <div class="wrap foot-inner">
     <img src="assets/logo-white.png" alt="Sievax">
@@ -543,6 +589,23 @@
 </footer>
 
 <script>
+  // Mobile nav: toggle the dropdown, keep aria state in sync, close on Escape / link click.
+  (function(){
+    var btn = document.getElementById('navToggle');
+    var menu = document.getElementById('navmenu');
+    if(!btn || !menu) return;
+    function setOpen(open){
+      menu.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+    btn.addEventListener('click', function(){ setOpen(!menu.classList.contains('open')); });
+    menu.addEventListener('click', function(e){ if(e.target.closest('a')) setOpen(false); });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && menu.classList.contains('open')){ setOpen(false); btn.focus(); }
+    });
+  })();
+
   // Lead form: submit via AJAX to the form service, show inline success.
   (function(){
     var form = document.getElementById('leadForm');
@@ -551,7 +614,7 @@
     form.addEventListener('submit', function(e){
       e.preventDefault();
       var action = form.getAttribute('action') || '';
-      function showSuccess(){ form.style.display='none'; success.style.display='block'; }
+      function showSuccess(){ form.style.display='none'; success.style.display='block'; try{ success.focus(); }catch(e){} }
       // If the endpoint hasn't been configured yet, just confirm (demo mode).
       if(action.indexOf('REPLACE_WITH_FORM_ID') !== -1){ showSuccess(); return; }
       fetch(action, {
