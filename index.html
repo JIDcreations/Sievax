@@ -51,7 +51,7 @@
   a{color:inherit}
   h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.0;letter-spacing:-.03em}
 
-  .wrap{max-width:1340px;margin:0 auto;padding:0 clamp(22px,4.5vw,64px)}
+  .wrap{max-width:1400px;margin:0 auto;padding:0 clamp(22px,4.5vw,72px)}
   section{padding:clamp(60px,8.5vw,108px) 0;position:relative}
 
   /* focus + motion floor */
@@ -86,7 +86,7 @@
   .mbox{border:1.5px solid var(--ink);border-radius:6px;background:var(--paper)}
 
   /* generic section head */
-  .sec-head h2{font-size:clamp(30px,4.7vw,50px);margin-top:16px}
+  .sec-head h2{font-size:clamp(30px,4.7vw,50px)}
   .sec-lead{font-size:clamp(16px,2vw,17.5px);color:var(--muted);max-width:54ch;margin-top:16px}
   .on-ink h2,.on-ink h3{color:#fff}
   .on-ink .sec-lead{color:rgba(255,255,255,.72)}
@@ -119,7 +119,7 @@
   .rise{transform:translateY(16px)}
 
   /* enrol index-card */
-  .enroll{margin-top:48px;display:flex;flex-wrap:wrap;align-items:stretch;background:var(--ink);color:#fff;border-radius:12px;overflow:hidden;max-width:880px;border:1.5px solid var(--ink);box-shadow:6px 6px 0 rgba(17,17,17,.14)}
+  .enroll{margin-top:48px;display:flex;flex-wrap:wrap;align-items:stretch;background:var(--ink);color:#fff;border-radius:12px;overflow:hidden;max-width:1080px;border:1.5px solid var(--ink);box-shadow:6px 6px 0 rgba(17,17,17,.14)}
   .enroll .stub{background:var(--yellow);color:var(--ink);padding:20px 26px;display:flex;flex-direction:column;justify-content:center;border-right:1.5px solid var(--ink)}
   .enroll .stub .k{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.72}
   .enroll .stub .v{font-family:var(--disp);font-weight:700;font-size:23px;margin-top:2px}
@@ -131,7 +131,7 @@
 
   /* GAP */
   .gap-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,60px);align-items:center}
-  .gap h2{font-size:clamp(30px,4.7vw,50px);margin-top:16px;max-width:15ch}
+  .gap h2{font-size:clamp(30px,4.7vw,50px);max-width:15ch}
   .gap p{font-size:clamp(16px,2vw,17.5px);color:var(--muted);margin-top:22px;max-width:48ch}
   .gap-img{background:var(--paper);border:1.5px solid var(--ink);border-radius:10px;padding:14px;box-shadow:8px 8px 0 var(--yellow);transform:rotate(-1.2deg)}
   .gap-img img{border-radius:4px}
@@ -193,7 +193,7 @@
   .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   .play{width:70px;height:70px;border-radius:50%;background:var(--yellow);border:1.5px solid #000;display:flex;align-items:center;justify-content:center;margin:0 auto}
   .play span{border-left:20px solid var(--ink);border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:5px}
-  .tr-copy h2{font-size:clamp(28px,4vw,42px);margin-top:14px;max-width:17ch}
+  .tr-copy h2{font-size:clamp(28px,4vw,42px);max-width:17ch}
   .tr-copy p{color:var(--muted);font-size:16.5px;margin-top:16px}
   .tr-tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
   .tr-tags span{font-family:var(--disp);font-size:13px;font-weight:700;border:1.5px solid var(--ink);border-radius:999px;padding:7px 15px}
@@ -215,7 +215,7 @@
   /* CONVERSION — dark */
   .convert{background:var(--ink);color:#fff}
   .convert-head{text-align:center;margin-bottom:44px}
-  .convert-head h2{font-size:clamp(30px,4.8vw,50px);margin-top:14px}
+  .convert-head h2{font-size:clamp(30px,4.8vw,50px)}
   .convert-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:26px;align-items:start}
   .info-card{background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.22);border-radius:10px;padding:30px;color:#fff}
   .price-row{display:flex;align-items:baseline;gap:14px}
@@ -336,7 +336,6 @@
   <div class="wrap">
     <div class="gap-grid">
       <div>
-        <span class="eyebrow">The gap</span>
         <h2>Everyone has the tools. Almost no one has the <span class="uline">strategy</span>.</h2>
         <p>Most organizations already bought the AI — the licenses, the pilots, the enthusiasm. And still nothing changes, because the hard part was never the technology. It's alignment, ownership, data foundations, change resistance, and people learning to work differently.</p>
       </div>
@@ -362,7 +361,6 @@
 <!-- AUDIENCE -->
 <section id="audience">
   <div class="wrap">
-    <span class="eyebrow">Who it's for</span>
     <div class="sec-head"><h2>Built for the people who make AI land</h2></div>
     <div class="aud-grid">
       <div class="aud-card aud-yes">
@@ -380,7 +378,6 @@
 <!-- OUTCOMES -->
 <section class="outcomes on-ink">
   <div class="wrap">
-    <span class="eyebrow">Outcomes</span>
     <div class="sec-head"><h2>What you'll walk away with</h2></div>
     <div class="out-intro">
       <div class="out-illo">
@@ -404,7 +401,6 @@
   <div class="wrap">
     <div class="prog-top">
       <div>
-        <span class="eyebrow">The program</span>
         <div class="sec-head"><h2>Six weeks. One live session a week.</h2></div>
       </div>
       <div class="pills">
@@ -438,7 +434,6 @@
       </div>
     </div>
     <div class="tr-copy">
-      <span class="eyebrow">Who's teaching</span>
       <h2>Independent guidance that delivers real impact</h2>
       <p>Sievax helps organizations unlock real business value from Data &amp; AI. We've seen too many promising projects stall because they focused on tools, not outcomes — strategies lived in slides, adoption lagged, and impact stayed unclear.</p>
       <p><b style="color:var(--ink)">Jan Meskens</b> founded Sievax, after more than a decade in the field, to do things differently — with one guiding principle: independent guidance delivers real impact.</p>
@@ -455,7 +450,6 @@
 <!-- TESTIMONIALS -->
 <section>
   <div class="wrap">
-    <span class="eyebrow">From past participants</span>
     <div class="sec-head"><h2>Strategy that survived reality</h2></div>
     <div class="tst-grid">
       <div class="tst"><div class="q">&ldquo;</div><p>Jan cut through months of stalled debate in two sessions. We left with a strategy the board actually approved.</p><div class="who"><span class="avatar"><!-- swap for <img src="assets/testimonial-1.jpg" alt="[ Name ]"> --><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="currentColor"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6" fill="currentColor"/></svg></span><div><div class="n">[ Name ]</div><div class="r">Head of Data, [ Organisation ]</div></div></div></div>
@@ -469,7 +463,6 @@
 <section class="convert on-ink" id="apply">
   <div class="wrap">
     <div class="convert-head">
-      <span class="eyebrow">Next cohort</span>
       <h2>Claim one of 20 seats</h2>
     </div>
     <div class="convert-grid">
@@ -523,7 +516,6 @@
 <!-- FAQ -->
 <section>
   <div class="wrap">
-    <span class="eyebrow">Questions</span>
     <div class="sec-head" style="margin-bottom:26px"><h2>Good to know before you apply</h2></div>
     <details open><summary>What language is the program in?<span class="ic">+</span></summary><p>English, so participants can join from anywhere in the world.</p></details>
     <details><summary>Do I need a technical background?<span class="ic">+</span></summary><p>No. This is a strategy and leadership program, not a coding course. You'll work on the organizational side of Data &amp; AI.</p></details>
