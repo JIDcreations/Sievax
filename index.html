@@ -50,8 +50,8 @@
     --arrD:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2052'%3E%3Cpath%20d='M12,2%20L12,44%20M6,37%20L12,46%20L18,37'%20stroke='%23111111'%20stroke-width='2'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth;overflow-x:hidden;scroll-padding-top:88px}
-  body{font-family:var(--body);color:var(--ink);background:var(--board);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  html{scroll-behavior:smooth;overflow-x:clip;scroll-padding-top:88px}
+  body{font-family:var(--body);color:var(--ink);background:var(--board);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip}
   img{max-width:100%;display:block}
   a{color:inherit}
   h1,h2,h3,h4{font-family:var(--disp);font-weight:600;line-height:1.1;letter-spacing:-.01em}
@@ -232,7 +232,9 @@
   .convert{background:var(--ink);color:#fff}
   .convert-head{text-align:center;margin-bottom:44px}
   .convert-head h2{font-size:clamp(30px,4.8vw,50px)}
-  .convert-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:26px;align-items:start}
+  .convert-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:26px;align-items:stretch}
+  .convert-col{display:flex;flex-direction:column;gap:20px}
+  .convert-col .info-card:last-child{flex:1;display:flex;flex-direction:column}
   .convert-alt{text-align:center;margin-top:36px;font-family:var(--disp);font-weight:600;font-size:16px;color:rgba(255,255,255,.82)}
   .convert-alt a{color:var(--yellow);text-decoration:none;font-weight:700;border-bottom:2px solid rgba(254,228,71,.45);padding-bottom:1px;transition:border-color .16s}
   .convert-alt a:hover{border-color:var(--yellow)}
@@ -241,8 +243,8 @@
   .price-row .big{font-family:var(--disp);font-weight:700;font-size:52px;color:var(--yellow);line-height:1}
   .price-row .note{font-size:14px;color:rgba(255,255,255,.62)}
   .early{margin-top:18px;background:var(--yellow);color:var(--ink);border:none;border-radius:12px;padding:13px 16px;font-size:14.5px;font-weight:600}
-  .facts{list-style:none;margin-top:4px}
-  .facts li{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:15px}
+  .facts{list-style:none;margin-top:4px;flex:1;display:flex;flex-direction:column}
+  .facts li{display:flex;flex:1;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:15px}
   .facts li:last-child{border-bottom:none}
   .facts .fk{color:rgba(255,255,255,.62)}
   .facts .fv{font-family:var(--disp);font-weight:700}
@@ -526,7 +528,7 @@
       <h2>Claim one of 20 seats</h2>
     </div>
     <div class="convert-grid">
-      <div style="display:flex;flex-direction:column;gap:20px">
+      <div class="convert-col">
         <div class="info-card">
           <div class="price-row"><div class="big"><!-- replace with price, e.g. &euro;1,950 -->On request</div><div class="note">per seat<br>invoiced to your org</div></div>
           <div class="early"><!-- replace with specifics, e.g. the first 5 to join save &euro;300 -->Early-bird rate for the first sign-ups — ask us.</div>
