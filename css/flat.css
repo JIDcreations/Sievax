@@ -548,11 +548,12 @@ nav {
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 20px;
-  padding: 14px;
+  overflow: hidden;
   box-shadow: var(--shadow);
 }
 .gap-img img {
-  border-radius: 6px;
+  display: block;
+  width: 100%;
 }
 
 /* 20/80 thesis bar — the spine */
@@ -674,11 +675,12 @@ nav {
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 20px;
-  padding: 14px;
+  overflow: hidden;
   box-shadow: var(--shadow);
 }
 .out-illo img {
-  border-radius: 6px;
+  display: block;
+  width: 100%;
 }
 .out-lead {
   font-size: clamp(16px, 2vw, 18px);
