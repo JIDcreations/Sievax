@@ -21,8 +21,8 @@
 <meta name="twitter:image" content="https://academy.sievax.be/assets/illustration-gap.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://use.typekit.net/tcv8mjn.css">
+<!-- Strak version: Poppins, to mirror sievax.be exactly (rounded geometric). Brand guide lists Areal Bold + Plus Jakarta — see note. -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --yellow:#FEE447;
@@ -33,12 +33,12 @@
     --muted:rgba(17,17,17,.72);
     --line:rgba(17,17,17,.14);
     --grid:rgba(17,17,17,.045);   /* faint graph-paper lines */
-    --disp:'arial',Arial,'Helvetica Neue',sans-serif;  /* Typekit "Areal" (brand display) */
-    --body:'Plus Jakarta Sans',sans-serif;
+    --disp:'Poppins',sans-serif;  /* mirror sievax.be (live site uses Poppins) */
+    --body:'Poppins',sans-serif;
     /* soft depth (sievax.be uses soft/no shadow — not hard offset "sticker" shadows) */
     --shadow:0 20px 44px -22px rgba(17,17,17,.26);
     --shadow-sm:0 10px 26px -14px rgba(17,17,17,.16);
-    --radius:16px;
+    --radius:22px;
     /* hand-drawn yellow highlighter swipe (behind key words) */
     --swipe:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20400%2040'%20preserveAspectRatio='none'%3E%3Cpath%20d='M3,9%20C60,4%20140,6%20210,7%20C300,9%20350,3%20397,8%20L396,33%20C330,37%20240,31%20150,33%20C90,34%2045,35%204,31%20Z'%20fill='%23FEE447'/%3E%3C/svg%3E");
     /* hand-drawn black marker underline */
@@ -53,7 +53,7 @@
   body{font-family:var(--body);color:var(--ink);background:var(--board);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   img{max-width:100%;display:block}
   a{color:inherit}
-  h1,h2,h3,h4{font-family:var(--disp);font-weight:700;line-height:1.0;letter-spacing:-.03em}
+  h1,h2,h3,h4{font-family:var(--disp);font-weight:600;line-height:1.1;letter-spacing:-.01em}
 
   .wrap{max-width:1400px;margin:0 auto;padding:0 clamp(22px,4.5vw,72px)}
   section{padding:clamp(60px,8.5vw,108px) 0;position:relative}
@@ -124,7 +124,7 @@
   .hero-inner{padding-top:clamp(46px,7vw,78px);padding-bottom:clamp(52px,8vw,86px)}
   .hero .kbadge{display:inline-flex;align-items:center;gap:9px;font-family:var(--disp);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:var(--paper);border:1.5px solid var(--ink);border-radius:999px;padding:8px 16px}
   .hero .kbadge .pin{width:9px;height:9px;border-radius:50%;background:var(--yellow);border:1.5px solid var(--ink)}
-  .hero h1{font-size:clamp(42px,8.4vw,90px);line-height:.96;letter-spacing:-.035em;margin-top:24px;max-width:16ch}
+  .hero h1{font-size:clamp(42px,8.2vw,86px);line-height:1.04;letter-spacing:-.02em;margin-top:24px;max-width:16ch}
   .hero .sub{font-size:clamp(17px,2.3vw,21px);color:var(--muted);max-width:52ch;margin-top:26px}
   .hero .sub b{color:var(--ink);font-weight:600}
   .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;align-items:center}
@@ -134,7 +134,7 @@
   .rise{transform:translateY(16px)}
 
   /* enrol index-card */
-  .enroll{margin-top:48px;display:flex;flex-wrap:wrap;align-items:stretch;background:var(--ink);color:#fff;border-radius:14px;overflow:hidden;max-width:1080px;border:none;box-shadow:var(--shadow)}
+  .enroll{margin-top:48px;display:flex;flex-wrap:wrap;align-items:stretch;background:var(--ink);color:#fff;border-radius:20px;overflow:hidden;max-width:1080px;border:none;box-shadow:var(--shadow)}
   .enroll .stub{background:var(--yellow);color:var(--ink);padding:20px 26px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid rgba(17,17,17,.18)}
   .enroll .stub .k{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
   .enroll .stub .v{font-family:var(--disp);font-weight:700;font-size:23px;margin-top:2px}
@@ -148,11 +148,11 @@
   .gap-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,60px);align-items:center}
   .gap h2{font-size:clamp(30px,4.7vw,50px);max-width:15ch}
   .gap p{font-size:clamp(16px,2vw,17.5px);color:var(--muted);margin-top:22px;max-width:48ch}
-  .gap-img{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:var(--shadow)}
+  .gap-img{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:14px;box-shadow:var(--shadow)}
   .gap-img img{border-radius:6px}
 
   /* 20/80 thesis bar — the spine */
-  .thesis{margin-top:clamp(40px,6vw,64px);border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow-sm)}
+  .thesis{margin-top:clamp(40px,6vw,64px);border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow-sm)}
   .thesis-bar{display:flex;height:60px;font-family:var(--disp);font-weight:700}
   .thesis-bar .b20{flex:0 0 20%;background:var(--yellow);color:var(--ink);display:flex;align-items:center;justify-content:center;font-size:clamp(15px,2vw,19px)}
   .thesis-bar .b80{flex:1;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:clamp(15px,2vw,19px)}
@@ -175,7 +175,7 @@
   /* OUTCOMES — dark checklist */
   .outcomes{background:var(--ink);color:#fff}
   .out-intro{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(30px,4.5vw,54px);align-items:center;margin-top:40px}
-  .out-illo{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:var(--shadow)}
+  .out-illo{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:14px;box-shadow:var(--shadow)}
   .out-illo img{border-radius:6px}
   .out-lead{font-size:clamp(16px,2vw,18px);color:rgba(255,255,255,.82);max-width:44ch}
   .out-list{margin-top:clamp(34px,5vw,48px);display:grid;grid-template-columns:1fr 1fr;gap:6px 40px}
@@ -190,7 +190,7 @@
   .pill.solid{background:var(--yellow)}
   /* roadmap — a hand-drawn path of sticker cards, snaking L→R then back */
   .roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:64px 48px;margin-top:56px;position:relative}
-  .stop{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:28px 24px 24px;box-shadow:var(--shadow-sm)}
+  .stop{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:28px 24px 24px;box-shadow:var(--shadow-sm)}
   .stop .no{position:absolute;top:-18px;left:-14px;z-index:3;width:44px;height:44px;border-radius:50%;background:var(--paper);border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:700;font-size:15px}
   .stop:nth-child(odd) .no{background:var(--yellow)}
   .stop .wk{font-family:var(--disp);font-weight:700;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
@@ -204,7 +204,7 @@
 
   /* TRAINER */
   .tr-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(32px,5vw,54px);align-items:center}
-  .video{position:relative;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--ink);border:none;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;text-align:center;color:#fff}
+  .video{position:relative;aspect-ratio:4/3;border-radius:20px;overflow:hidden;background:var(--ink);border:none;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;text-align:center;color:#fff}
   .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   .play{width:70px;height:70px;border-radius:50%;background:var(--yellow);border:1.5px solid #000;display:flex;align-items:center;justify-content:center;margin:0 auto}
   .play span{border-left:20px solid var(--ink);border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:5px}
@@ -215,7 +215,7 @@
 
   /* TESTIMONIALS */
   .tst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
-  .tst{border:1px solid var(--line);border-radius:14px;padding:28px;display:flex;flex-direction:column;background:var(--paper);box-shadow:var(--shadow-sm)}
+  .tst{border:1px solid var(--line);border-radius:20px;padding:28px;display:flex;flex-direction:column;background:var(--paper);box-shadow:var(--shadow-sm)}
   .tst:nth-child(2){box-shadow:var(--shadow);transform:translateY(-6px)}
   .tst .q{font-family:var(--disp);font-weight:700;font-size:44px;line-height:.5;color:var(--ink)}
   .tst .q::selection{background:var(--yellow)}
@@ -235,7 +235,7 @@
   .convert-alt{text-align:center;margin-top:36px;font-family:var(--disp);font-weight:600;font-size:16px;color:rgba(255,255,255,.82)}
   .convert-alt a{color:var(--yellow);text-decoration:none;font-weight:700;border-bottom:2px solid rgba(254,228,71,.45);padding-bottom:1px;transition:border-color .16s}
   .convert-alt a:hover{border-color:var(--yellow)}
-  .info-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:30px;color:#fff}
+  .info-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:30px;color:#fff}
   .price-row{display:flex;align-items:baseline;gap:14px}
   .price-row .big{font-family:var(--disp);font-weight:700;font-size:52px;color:var(--yellow);line-height:1}
   .price-row .note{font-size:14px;color:rgba(255,255,255,.62)}
@@ -621,7 +621,7 @@
 </div>
 
 <!-- PREVIEW-ONLY version switcher (remove before production) -->
-<a class="vswitch" href="original.html"><span class="tag">Preview</span>Bekijk originele versie &#8644;</a>
+<a class="vswitch" href="original.html"><span class="tag">Preview</span>Bekijk illustratieve versie &#8644;</a>
 
 <script>
   // Mobile nav: toggle the dropdown, keep aria state in sync, close on Escape / link click.
