@@ -1,5 +1,6 @@
-# Publish only the site — keep Info/ (briefing, brand guide, example) and
-# backups in the repo but OUT of the public deploy.
+# Build the public site into dist/.
+# Ships the two pages plus css/, js/ and assets/ — and deliberately leaves
+# docs/ (briefing, brand guide, reference example) OUT of the public deploy.
 [build]
-  command = "rm -rf dist && mkdir dist && cp index.html original.html dist/ && cp -R assets dist/assets"
+  command = "rm -rf dist && mkdir dist && cp index.html illustrative.html dist/ && cp -R assets css js dist/"
   publish = "dist"
