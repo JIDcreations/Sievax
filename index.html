@@ -44,9 +44,10 @@
     /* hand-drawn black marker underline */
     --uline:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20200%2012'%20preserveAspectRatio='none'%3E%3Cpath%20d='M2,7%20C48,3%20100,10%20150,5%20C170,3%20186,7%20198,5'%20stroke='%23111111'%20stroke-width='2.5'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E");
     /* hand-drawn marker connector arrows (roadmap) */
-    --arrR:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2052%2024'%3E%3Cpath%20d='M2,13%20C16,9%2034,17%2045,12%20M38,6%20L47,12%20L38,18'%20stroke='%23111111'%20stroke-width='2.4'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
-    --arrL:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2052%2024'%3E%3Cpath%20d='M50,13%20C36,9%2018,17%207,12%20M14,6%20L5,12%20L14,18'%20stroke='%23111111'%20stroke-width='2.4'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
-    --arrD:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2052'%3E%3Cpath%20d='M12,2%20C8,16%2016,34%2012,45%20M6,38%20L12,47%20L18,38'%20stroke='%23111111'%20stroke-width='2.4'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
+    /* strak = clean straight arrows (the illustrative version keeps the hand-drawn ones) */
+    --arrR:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2052%2024'%3E%3Cpath%20d='M2,12%20L44,12%20M37,6%20L46,12%20L37,18'%20stroke='%23111111'%20stroke-width='2'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
+    --arrL:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2052%2024'%3E%3Cpath%20d='M50,12%20L8,12%20M15,6%20L6,12%20L15,18'%20stroke='%23111111'%20stroke-width='2'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
+    --arrD:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2052'%3E%3Cpath%20d='M12,2%20L12,44%20M6,37%20L12,46%20L18,37'%20stroke='%23111111'%20stroke-width='2'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth;overflow-x:hidden;scroll-padding-top:88px}
@@ -70,14 +71,14 @@
 
   /* eyebrow — a margin note with a marker tick */
   .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--disp);font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
-  .eyebrow::before{content:"";width:26px;height:10px;background:var(--yellow);transform:skewX(-14deg);flex:0 0 auto}
+  .eyebrow::before{content:"";width:26px;height:4px;border-radius:2px;background:var(--yellow);flex:0 0 auto}
   .on-ink .eyebrow{color:#fff}
 
   /* highlighter + underline helpers */
   .hl{position:relative;white-space:nowrap;color:var(--ink)}
-  .hl::before{content:"";position:absolute;left:-.1em;right:-.1em;bottom:.01em;height:.44em;background:var(--swipe) center/100% 100% no-repeat;z-index:-1}
+  .hl::before{content:"";position:absolute;left:-.06em;right:-.06em;bottom:.08em;height:.34em;background:var(--yellow);border-radius:1px;z-index:-1}
   .uline{position:relative;white-space:nowrap}
-  .uline::after{content:"";position:absolute;left:-.04em;right:-.04em;bottom:-.16em;height:.34em;background:var(--uline) center/100% 100% no-repeat}
+  .uline::after{content:"";position:absolute;left:0;right:0;bottom:-.08em;height:3px;background:var(--ink);border-radius:2px}
   .ymark{color:var(--yellow)}
 
   /* buttons — drawn "sticker" primary */
@@ -216,7 +217,7 @@
   /* TESTIMONIALS */
   .tst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
   .tst{border:1px solid var(--line);border-radius:20px;padding:28px;display:flex;flex-direction:column;background:var(--paper);box-shadow:var(--shadow-sm)}
-  .tst:nth-child(2){box-shadow:var(--shadow);transform:translateY(-6px)}
+  .tst:nth-child(2){border-color:var(--ink)}
   .tst .q{font-family:var(--disp);font-weight:700;font-size:44px;line-height:.5;color:var(--ink)}
   .tst .q::selection{background:var(--yellow)}
   .tst p{font-family:var(--disp);font-weight:500;font-size:17px;line-height:1.42;margin-top:14px}
