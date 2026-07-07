@@ -1,0 +1,5 @@
+# Publish only the site — keep Info/ (briefing, brand guide, example) and
+# backups in the repo but OUT of the public deploy.
+[build]
+  command = "rm -rf dist && mkdir dist && cp index.html original.html dist/ && cp -R assets dist/assets"
+  publish = "dist"
