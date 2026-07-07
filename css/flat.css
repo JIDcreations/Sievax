@@ -160,6 +160,11 @@ textarea:focus-visible {
 .on-ink .eyebrow {
   color: #fff;
 }
+/* eyebrow above a heading gets breathing room */
+.sec-head .eyebrow,
+.tr-copy .eyebrow {
+  margin-bottom: 12px;
+}
 
 /* highlighter + underline helpers */
 .hl {
@@ -544,6 +549,16 @@ nav {
   margin-top: 22px;
   max-width: 48ch;
 }
+/* yellow marker accent (wraps safely — no nowrap) */
+.gap-accent {
+  background: var(--yellow);
+  color: var(--ink);
+  font-weight: 600;
+  padding: 0 0.12em;
+  border-radius: 3px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
 .gap-img {
   background: var(--paper);
   border: 1px solid var(--line);
@@ -554,19 +569,24 @@ nav {
 .gap-img img {
   border-radius: 6px;
 }
+/* centered framed pyramid figure below the 20/80 thesis */
+.gap-fig {
+  max-width: 500px;
+  margin: clamp(32px, 5vw, 48px) auto 0;
+}
 
-/* 20/80 thesis bar — the spine */
+/* 20/80 thesis bar — the spine (made loud on purpose) */
 .thesis {
-  margin-top: clamp(40px, 6vw, 64px);
-  border: 1px solid var(--line);
-  border-radius: 20px;
+  margin-top: clamp(44px, 6vw, 68px);
+  border: 2.5px solid var(--ink);
+  border-radius: 22px;
   overflow: hidden;
   background: var(--paper);
   box-shadow: var(--shadow-sm);
 }
 .thesis-bar {
   display: flex;
-  height: 60px;
+  height: clamp(78px, 9vw, 104px);
   font-family: var(--disp);
   font-weight: 700;
 }
@@ -577,7 +597,10 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(15px, 2vw, 19px);
+  text-align: center;
+  padding: 0 8px;
+  font-size: clamp(15px, 2.1vw, 23px);
+  letter-spacing: -0.01em;
 }
 .thesis-bar .b80 {
   flex: 1;
@@ -586,20 +609,26 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(15px, 2vw, 19px);
+  text-align: center;
+  padding: 0 12px;
+  font-size: clamp(15px, 2.1vw, 23px);
+  letter-spacing: -0.01em;
 }
 .thesis-legend {
   display: flex;
-  border-top: 1px solid var(--line);
+  border-top: 2.5px solid var(--ink);
 }
 .thesis-legend > div {
-  padding: 15px 22px;
-  font-size: 14.5px;
+  padding: 18px 24px;
+  font-size: 15.5px;
 }
 .thesis-legend .l20 {
   flex: 0 0 20%;
-  border-right: 1px solid var(--line);
+  border-right: 2.5px solid var(--ink);
+  font-family: var(--disp);
   font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.005em;
   min-width: max-content;
 }
 .thesis-legend .l80 {
@@ -658,50 +687,41 @@ nav {
   height: 26px;
 }
 
-/* OUTCOMES — dark checklist */
+/* OUTCOMES — dark numbered grid */
 .outcomes {
   background: var(--ink);
   color: #fff;
-}
-.out-intro {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: clamp(30px, 4.5vw, 54px);
-  align-items: center;
-  margin-top: 40px;
-}
-.out-illo {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 14px;
-  box-shadow: var(--shadow);
-}
-.out-illo img {
-  border-radius: 6px;
-}
-.out-lead {
-  font-size: clamp(16px, 2vw, 18px);
-  color: rgba(255, 255, 255, 0.82);
-  max-width: 44ch;
 }
 .out-list {
   margin-top: clamp(34px, 5vw, 48px);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 6px 40px;
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  overflow: hidden;
 }
 .out-item {
   display: flex;
-  gap: 16px;
+  gap: 18px;
   align-items: flex-start;
-  padding: 18px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  padding: clamp(24px, 2.6vw, 30px) clamp(24px, 2.6vw, 32px);
+  background: var(--ink);
 }
-.out-item .ck {
+.out-item .num {
   flex: 0 0 auto;
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--disp);
+  font-weight: 700;
+  font-size: 15px;
   margin-top: 1px;
 }
 .out-item p {
@@ -829,47 +849,41 @@ nav {
 /* TRAINER */
 .tr-grid {
   display: grid;
-  grid-template-columns: 0.92fr 1.08fr;
+  grid-template-columns: minmax(300px, 380px) 1fr;
   gap: clamp(32px, 5vw, 54px);
-  align-items: center;
+  align-items: stretch; /* photo stretches to the full height of the copy column */
 }
-.video {
+/* photo slot — fills the row height; yellow "JM" initials show until jan-gs.png loads */
+.tr-photo {
   position: relative;
-  aspect-ratio: 4/3;
+  height: 100%;
+  min-height: 360px;
   border-radius: 20px;
   overflow: hidden;
-  background: var(--ink);
-  border: none;
-  box-shadow: var(--shadow);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #fff;
+  background: var(--yellow);
+  border: 2px solid var(--ink);
 }
-.video iframe {
+.tr-photo img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  border: 0;
+  object-fit: cover;
+  object-position: center 20%; /* portrait: keep upper-center face in frame */
+  display: block;
+  z-index: 1; /* cover the JM fallback; initials show only if the img errors out */
 }
-.play {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: var(--yellow);
-  border: 1.5px solid #000;
+.tr-initials {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
-}
-.play span {
-  border-left: 20px solid var(--ink);
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid transparent;
-  margin-left: 5px;
+  font-family: var(--disp);
+  font-weight: 700;
+  font-size: clamp(56px, 9vw, 92px);
+  letter-spacing: -0.02em;
+  color: var(--ink);
 }
 .tr-copy h2 {
   font-size: clamp(28px, 4vw, 42px);
@@ -1022,6 +1036,14 @@ nav {
   border-radius: 20px;
   padding: 30px;
   color: #fff;
+}
+.info-card h3 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 16px;
 }
 .price-row {
   display: flex;
@@ -1317,25 +1339,6 @@ footer {
   color: #fff;
 }
 
-/* mid-page CTA band — re-offers the primary action at decision points */
-.cta-band {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 16px 22px;
-  text-align: center;
-  margin-top: clamp(38px, 5vw, 54px);
-}
-.cta-band .lead {
-  font-family: var(--disp);
-  font-weight: 700;
-  font-size: clamp(18px, 2.4vw, 22px);
-}
-.on-ink .cta-band .lead {
-  color: #fff;
-}
-
 /* mobile sticky CTA */
 .sticky-cta {
   display: none;
@@ -1397,19 +1400,22 @@ footer {
 @media (max-width: 900px) {
   .gap-grid,
   .convert-grid,
-  .tr-grid,
-  .out-intro {
+  .tr-grid {
     grid-template-columns: 1fr;
   }
   .out-list,
   .tst-grid {
     grid-template-columns: 1fr;
   }
-  .tr-grid .video {
+  .tr-photo {
     order: -1;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 1;
+    max-width: 320px;
+    justify-self: center;
   }
-  .gap-img,
-  .out-illo {
+  .gap-img {
     transform: none;
   }
   .roadmap {
@@ -1424,7 +1430,7 @@ footer {
   .stop:not(:last-child)::before {
     content: "";
     position: absolute;
-    left: 22px;
+    left: 50%;
     bottom: -52px;
     width: 24px;
     height: 52px;
