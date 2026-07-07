@@ -559,16 +559,15 @@ nav {
   display: block;
   width: 100%;
 }
-/* supporting pyramid sketch — centred figure under the thesis bar */
-.gap-fig {
-  margin: clamp(40px, 6vw, 64px) auto 0;
-  max-width: 500px;
+/* supporting pyramid sketch — sits in the audience section beside the cards */
+.aud-fig {
+  margin: 0;
 }
-.gap-fig .gap-img {
+.aud-fig .gap-img {
   padding: 0; /* image edge-to-edge, no inner mat */
   overflow: hidden; /* clip the image to the frame's rounded corners */
 }
-.gap-fig .gap-img img {
+.aud-fig .gap-img img {
   width: 100%;
   border-radius: 0;
 }
@@ -630,11 +629,24 @@ nav {
 }
 
 /* AUDIENCE */
-.aud-grid {
+/* audience: two stacked cards on the left, framed pyramid sketch on the right */
+.aud-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
+  grid-template-columns: 1fr 0.92fr;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: stretch;
   margin-top: 40px;
+}
+.aud-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.aud-cards .aud-card {
+  flex: 1; /* both cards grow to fill the sketch's height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .aud-card {
   border-radius: 8px;
@@ -1373,8 +1385,13 @@ footer {
 @media (max-width: 900px) {
   .gap-grid,
   .convert-grid,
+  .aud-layout,
   .tr-grid {
     grid-template-columns: 1fr;
+  }
+  .aud-fig {
+    max-width: 500px;
+    margin: 0 auto;
   }
   .out-list,
   .tst-grid {

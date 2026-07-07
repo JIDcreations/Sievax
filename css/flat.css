@@ -570,11 +570,6 @@ nav {
   display: block;
   width: 100%;
 }
-/* centered framed pyramid figure below the 20/80 thesis */
-.gap-fig {
-  max-width: 500px;
-  margin: clamp(32px, 5vw, 48px) auto 0;
-}
 
 /* 20/80 thesis bar — the spine (made loud on purpose) */
 .thesis {
@@ -638,11 +633,27 @@ nav {
 }
 
 /* AUDIENCE */
-.aud-grid {
+/* audience: two stacked cards on the left, framed pyramid figure on the right */
+.aud-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
+  grid-template-columns: 1fr 0.92fr;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: stretch;
   margin-top: 40px;
+}
+.aud-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.aud-cards .aud-card {
+  flex: 1; /* both cards grow to fill the image's height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.aud-fig {
+  margin: 0;
 }
 .aud-card {
   border-radius: var(--radius);
@@ -861,7 +872,7 @@ nav {
   min-height: 360px;
   border-radius: 20px;
   overflow: hidden;
-  background: var(--yellow);
+  background: #ececea;
   border: 2px solid var(--ink);
 }
 .tr-photo img {
@@ -1401,8 +1412,13 @@ footer {
 @media (max-width: 900px) {
   .gap-grid,
   .convert-grid,
+  .aud-layout,
   .tr-grid {
     grid-template-columns: 1fr;
+  }
+  .aud-fig {
+    max-width: 500px;
+    margin: 0 auto;
   }
   .out-list,
   .tst-grid {
