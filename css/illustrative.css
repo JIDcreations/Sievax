@@ -157,6 +157,10 @@ textarea:focus-visible {
 .on-ink .eyebrow {
   color: #fff;
 }
+/* kicker sits above the section heading */
+.eyebrow + h2 {
+  margin-top: 14px;
+}
 
 /* highlighter + underline helpers */
 .hl {
@@ -555,18 +559,32 @@ nav {
   display: block;
   width: 100%;
 }
+/* supporting pyramid sketch — centred figure under the thesis bar */
+.gap-fig {
+  margin: clamp(40px, 6vw, 64px) auto 0;
+  max-width: 500px;
+}
+.gap-fig .gap-img {
+  padding: 0; /* image edge-to-edge, no inner mat */
+  overflow: hidden; /* clip the image to the frame's rounded corners */
+}
+.gap-fig .gap-img img {
+  width: 100%;
+  border-radius: 0;
+}
 
 /* 20/80 thesis bar — the spine */
 .thesis {
   margin-top: clamp(40px, 6vw, 64px);
-  border: 1.5px solid var(--ink);
-  border-radius: 10px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
   overflow: hidden;
   background: var(--paper);
+  box-shadow: 10px 10px 0 var(--yellow);
 }
 .thesis-bar {
   display: flex;
-  height: 60px;
+  height: 88px;
   font-family: var(--disp);
   font-weight: 700;
 }
@@ -577,8 +595,9 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-right: 1.5px solid var(--ink);
-  font-size: clamp(15px, 2vw, 19px);
+  border-right: 2px solid var(--ink);
+  font-size: clamp(16px, 2.4vw, 24px);
+  letter-spacing: 0.01em;
 }
 .thesis-bar .b80 {
   flex: 1;
@@ -587,20 +606,22 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(15px, 2vw, 19px);
+  font-size: clamp(17px, 2.6vw, 27px);
+  letter-spacing: 0.01em;
 }
 .thesis-legend {
   display: flex;
-  border-top: 1.5px solid var(--ink);
+  border-top: 2px solid var(--ink);
 }
 .thesis-legend > div {
-  padding: 15px 22px;
-  font-size: 14.5px;
+  padding: 18px 24px;
+  font-size: 15px;
 }
 .thesis-legend .l20 {
   flex: 0 0 20%;
-  border-right: 1.5px solid var(--ink);
+  border-right: 2px solid var(--ink);
   font-weight: 700;
+  font-size: 15.5px;
   min-width: max-content;
 }
 .thesis-legend .l80 {
@@ -664,52 +685,54 @@ nav {
   background: var(--ink);
   color: #fff;
 }
-.out-intro {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: clamp(30px, 4.5vw, 54px);
-  align-items: center;
-  margin-top: 40px;
-}
-.out-illo {
-  background: var(--paper);
-  border: 1.5px solid #000;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 8px 8px 0 var(--yellow);
-  transform: rotate(1deg);
-}
-.out-illo img {
-  display: block;
-  width: 100%;
-}
-.out-lead {
-  font-size: clamp(16px, 2vw, 18px);
-  color: rgba(255, 255, 255, 0.82);
-  max-width: 44ch;
-}
+/* numbered checklist — one bordered "sticker" block on the dark section */
 .out-list {
   margin-top: clamp(34px, 5vw, 48px);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 6px 40px;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 8px 8px 0 var(--yellow);
 }
 .out-item {
   display: flex;
   gap: 16px;
   align-items: flex-start;
-  padding: 18px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 24px 26px;
+  background: var(--paper);
+  border-right: 1.5px solid var(--ink);
+  border-bottom: 1.5px solid var(--ink);
 }
-.out-item .ck {
+/* right divider only between the two columns */
+.out-item:nth-child(2n) {
+  border-right: none;
+}
+/* last row carries no bottom rule */
+.out-item:nth-last-child(-n + 2) {
+  border-bottom: none;
+}
+.out-item .num {
   flex: 0 0 auto;
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--yellow);
+  border: 1.5px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--disp);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--ink);
   margin-top: 1px;
 }
 .out-item p {
   font-size: 16.5px;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
 }
 
 /* PROGRAM — marker timeline */
@@ -833,47 +856,54 @@ nav {
 /* TRAINER */
 .tr-grid {
   display: grid;
-  grid-template-columns: 0.92fr 1.08fr;
+  grid-template-columns: minmax(300px, 380px) 1fr;
   gap: clamp(32px, 5vw, 54px);
-  align-items: center;
+  align-items: stretch;
 }
-.video {
+/* copy column stacks; the CTA sits at its foot so the photo bottom-aligns to it */
+.tr-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.tr-cta {
+  margin-top: auto;
+  padding-top: 26px;
+}
+/* square "sticker" portrait — img with a yellow JM monogram fallback beneath */
+.tr-photo {
   position: relative;
-  aspect-ratio: 4/3;
+  z-index: 1;
+  height: 100%;
+  min-height: 400px;
   border-radius: 10px;
   overflow: hidden;
-  background: var(--ink);
+  background: var(--yellow);
   border: 1.5px solid var(--ink);
-  box-shadow: 8px 8px 0 var(--yellow);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #fff;
+  box-shadow: 8px 8px 0 var(--ink);
+  transform: rotate(-1.5deg);
 }
-.video iframe {
+.tr-photo img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  border: 0;
+  object-fit: cover;
+  /* portrait source, face upper-centre — bias the square crop to the top */
+  object-position: center 20%;
+  z-index: 1; /* cover the JM fallback; initials show only if the img errors out */
 }
-.play {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: var(--yellow);
-  border: 1.5px solid #000;
+.tr-initials {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
-}
-.play span {
-  border-left: 20px solid var(--ink);
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid transparent;
-  margin-left: 5px;
+  font-family: var(--disp);
+  font-weight: 700;
+  font-size: clamp(56px, 11vw, 104px);
+  letter-spacing: -0.02em;
+  color: var(--ink);
 }
 .tr-copy h2 {
   font-size: clamp(28px, 4vw, 42px);
@@ -1343,20 +1373,34 @@ footer {
 @media (max-width: 900px) {
   .gap-grid,
   .convert-grid,
-  .tr-grid,
-  .out-intro {
+  .tr-grid {
     grid-template-columns: 1fr;
   }
   .out-list,
   .tst-grid {
     grid-template-columns: 1fr;
   }
-  .tr-grid .video {
+  /* single column: drop column divider, rule every row except the last */
+  .out-list .out-item {
+    border-right: none;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .out-list .out-item:last-child {
+    border-bottom: none;
+  }
+  .tr-grid .tr-photo {
     order: -1;
   }
   .gap-img,
-  .out-illo {
+  .tr-photo {
     transform: none;
+  }
+  /* stacked: photo reverts to a capped square instead of full row height */
+  .tr-photo {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 1;
+    max-width: 460px;
   }
   .roadmap {
     grid-template-columns: 1fr;
@@ -1370,7 +1414,7 @@ footer {
   .stop:not(:last-child)::before {
     content: "";
     position: absolute;
-    left: 22px;
+    left: 50%;
     bottom: -52px;
     width: 24px;
     height: 52px;
