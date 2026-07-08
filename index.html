@@ -90,6 +90,7 @@
     <div class="wrap">
       <div class="gap-grid">
         <div>
+          <span class="eyebrow">The gap</span>
           <h2>Everyone has the tools. Almost no one has the <span class="uline">strategy</span>.</h2>
           <p>Most organizations have already bought the AI. They have the licenses, the pilots, the enthusiasm. And still nothing changes — because the hard part was never the technology.</p>
           <p>The hard part is alignment, ownership, data foundations, change resistance, and people who don't yet know how to work differently. <span class="gap-accent">That's the 80% nobody trains for.</span></p>
@@ -116,7 +117,7 @@
   <!-- ========================= AUDIENCE ========================= -->
   <section id="audience">
     <div class="wrap">
-      <div class="sec-head"><h2>Built for the people who make AI land</h2></div>
+      <div class="sec-head"><span class="eyebrow">Who it's for</span><h2>Built for the people who make AI land</h2></div>
       <div class="aud-layout">
         <div class="aud-cards">
           <div class="aud-card aud-yes">
@@ -164,6 +165,7 @@
     <div class="wrap">
       <div class="prog-top">
         <div class="sec-head">
+          <span class="eyebrow">The program</span>
           <h2>How the cohort works</h2>
           <p class="sec-lead">Live online sessions over six weeks, capped at 20 participants so every voice is in the room. Each bar shows the same truth: a sliver of tech, a lot of everything else.</p>
         </div>
@@ -188,7 +190,7 @@
     </div>
   </section>
 
-  <!-- ========================= TRAINER + VIDEO ========================= -->
+  <!-- ========================= TRAINER ========================= -->
   <section class="trainer" id="trainer">
     <div class="wrap tr-grid">
       <div class="tr-photo">
@@ -213,10 +215,37 @@
     </div>
   </section>
 
+  <!-- ========================= VIDEO ========================= -->
+  <section class="video" id="video">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Watch</span>
+        <h2>Two minutes on why this academy exists</h2>
+        <p class="sec-lead">Jan explains what the cohort covers, who it's for, and the thinking behind the 80/20 — in his own words.</p>
+      </div>
+
+      <!--
+        Click-to-load YouTube facade — nothing loads from YouTube until "play" is
+        pressed (faster page, no third-party tracking on arrival). js/main.js swaps
+        this poster for the embed on click.
+        TO GO LIVE: replace REPLACE_WITH_YOUTUBE_ID with the video's YouTube ID
+        (the v= value in the watch URL, e.g. dQw4w9WgXcQ). Until then it stays in
+        demo mode and the button does nothing.
+      -->
+      <div class="vid-frame" id="videoEmbed" data-video-id="REPLACE_WITH_YOUTUBE_ID">
+        <button class="vid-play" type="button" aria-label="Play the academy explainer video">
+          <span class="vid-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+          <span class="vid-label">Jan explains the academy</span>
+          <span class="vid-time">2 min watch</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
   <!-- ========================= TESTIMONIALS ========================= -->
   <section>
     <div class="wrap">
-      <div class="sec-head"><h2>Strategy that survived reality</h2></div>
+      <div class="sec-head"><span class="eyebrow">Testimonials</span><h2>Strategy that survived reality</h2></div>
       <div class="tst-grid">
         <div class="tst"><div class="q">&ldquo;</div><p>Jan cut through months of stalled debate in two sessions. We left with a strategy the board actually approved.</p><div class="who"><span class="avatar"><!-- swap for <img src="assets/images/testimonial-1.jpg" alt="[ Name ]"> --><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="currentColor"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6" fill="currentColor"/></svg></span><div><div class="n">[ Name ]</div><div class="r">Head of Data, [ Organisation ]</div></div></div></div>
         <div class="tst"><div class="q">&ldquo;</div><p>The 80/20 framing changed how our whole leadership team talks about AI.</p><div class="who"><span class="avatar"><!-- swap for <img src="assets/images/testimonial-2.jpg" alt="[ Name ]"> --><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="currentColor"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6" fill="currentColor"/></svg></span><div><div class="n">[ Name ]</div><div class="r">CDO, [ Organisation ]</div></div></div></div>
@@ -229,6 +258,7 @@
   <section class="convert on-ink" id="apply">
     <div class="wrap">
       <div class="convert-head">
+        <span class="eyebrow">Next cohort</span>
         <h2>Claim one of 20 seats</h2>
       </div>
 
@@ -307,7 +337,7 @@
   <!-- ========================= FAQ ========================= -->
   <section>
     <div class="wrap">
-      <div class="sec-head" style="margin-bottom:26px"><h2>Good to know before you apply</h2></div>
+      <div class="sec-head" style="margin-bottom:26px"><span class="eyebrow">Questions</span><h2>Good to know before you apply</h2></div>
       <details open><summary>What language is the program in?<span class="ic">+</span></summary><p>English, so participants can join from anywhere in the world.</p></details>
       <details><summary>Do I need a technical background?<span class="ic">+</span></summary><p>No. This is a strategy and leadership program, not a coding course. You'll work on the organizational side of Data &amp; AI.</p></details>
       <details><summary>What if I miss a live session?<span class="ic">+</span></summary><p>Every live session is recorded, so you can catch up without losing your place in the cohort.</p></details>

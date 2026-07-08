@@ -31,6 +31,9 @@
   --swipe: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20400%2040'%20preserveAspectRatio='none'%3E%3Cpath%20d='M3,9%20C60,4%20140,6%20210,7%20C300,9%20350,3%20397,8%20L396,33%20C330,37%20240,31%20150,33%20C90,34%2045,35%204,31%20Z'%20fill='%23FEE447'/%3E%3C/svg%3E");
   /* hand-drawn black marker underline */
   --uline: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20200%2012'%20preserveAspectRatio='none'%3E%3Cpath%20d='M2,7%20C48,3%20100,10%20150,5%20C170,3%20186,7%20198,5'%20stroke='%23111111'%20stroke-width='2.5'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E");
+  /* hand-drawn YELLOW marker underline — the per-title accent (replaces the
+     strak version's eyebrows). Same drawn stroke, thicker so it reads on paper. */
+  --uline-y: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20200%2012'%20preserveAspectRatio='none'%3E%3Cpath%20d='M2,7%20C48,3%20100,10%20150,5%20C170,3%20186,7%20198,5'%20stroke='%23FEE447'%20stroke-width='4.5'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E");
   /* hand-drawn marker connector arrows (roadmap) */
   --arrR: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2052%2024'%3E%3Cpath%20d='M2,13%20C16,9%2034,17%2045,12%20M38,6%20L47,12%20L38,18'%20stroke='%23111111'%20stroke-width='2.4'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
   --arrL: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2052%2024'%3E%3Cpath%20d='M50,13%20C36,9%2018,17%207,12%20M14,6%20L5,12%20L14,18'%20stroke='%23111111'%20stroke-width='2.4'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
@@ -187,9 +190,9 @@ textarea:focus-visible {
   position: absolute;
   left: -0.04em;
   right: -0.04em;
-  bottom: -0.16em;
-  height: 0.34em;
-  background: var(--uline) center/100% 100% no-repeat;
+  bottom: -0.14em;
+  height: 0.4em;
+  background: var(--uline-y) center/100% 100% no-repeat;
 }
 .ymark {
   color: var(--yellow);
@@ -939,6 +942,85 @@ nav {
   border: 1.5px solid var(--ink);
   border-radius: 999px;
   padding: 7px 15px;
+}
+
+/* VIDEO — click-to-load explainer (illustrative: sticker frame, offset shadow) */
+.vid-frame {
+  position: relative;
+  margin-top: clamp(28px, 4vw, 44px);
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      120% 130% at 82% -12%,
+      rgba(254, 228, 71, 0.3),
+      transparent 55%
+    ),
+    var(--ink);
+  border: 1.5px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--yellow);
+}
+.vid-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.vid-play {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: #fff;
+}
+.vid-disc {
+  width: clamp(66px, 8vw, 88px);
+  height: clamp(66px, 8vw, 88px);
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.16s,
+    box-shadow 0.16s;
+}
+.vid-disc svg {
+  width: 40%;
+  height: 40%;
+  margin-left: 4px; /* optically centre the play triangle */
+}
+.vid-play:hover .vid-disc {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+.vid-label {
+  font-family: var(--disp);
+  font-weight: 700;
+  font-size: clamp(18px, 2.4vw, 24px);
+  letter-spacing: -0.02em;
+}
+.vid-time {
+  font-family: var(--disp);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* TESTIMONIALS */
