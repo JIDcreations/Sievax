@@ -965,6 +965,30 @@ nav {
   max-width: 68ch;
 }
 
+/* ── Yellow-ground fixes for .gap and .trainer ──────────────────────────
+   Both sections set their body copy to --muted, a grey tuned for the dark
+   ground; it has to become black ink here. These rules sit after the
+   section blocks because .on-yellow p and .gap p carry equal specificity,
+   so source order is what decides it. */
+.on-yellow.gap p,
+.on-yellow .tr-copy p,
+.on-yellow .vvid-copy p {
+  color: var(--on-yellow);
+  opacity: 0.78;
+}
+/* The marker highlight is yellow-on-dark by default, which reads as nothing
+   on a yellow ground — invert it so the emphasis survives. */
+.on-yellow .gap-accent {
+  background: var(--on-yellow);
+  color: var(--yellow);
+}
+/* --line is a near-black hairline meant for dark surfaces; on yellow it
+   disappears, so the photo and sketch frames get an ink edge instead. */
+.on-yellow .tr-photo,
+.on-yellow .gap-img {
+  border-color: rgba(11, 11, 11, 0.22);
+}
+
 /* VIDEO — click-to-load explainer */
 .vid-frame {
   position: relative;
