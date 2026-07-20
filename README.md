@@ -3,29 +3,18 @@
 Static landing page for the Sievax Academy Data &amp; AI Strategy cohort.
 No build step, no framework — plain HTML, CSS and a little vanilla JavaScript.
 
-## Two visual themes
-
-The same page ships in two looks, sharing markup structure and behaviour:
-
-| Page                 | Theme          | Character                                                        |
-| -------------------- | -------------- | --------------------------------------------------------------- |
-| `index.html`         | **Flat**       | Production. Mirrors sievax.be — Poppins, flat surfaces, no shadows. |
-| `illustrative.html`  | Illustrative   | Preview only. Hand-drawn accents, offset shadows, marker underlines. |
-
-A floating "Preview" switcher in the corner toggles between the two. It is
-marked **remove before production** in both files.
+The page mirrors the live sievax.be look: Poppins, flat surfaces, no shadows,
+pill buttons, generous radii.
 
 ## Structure
 
 ```
 .
-├── index.html            # Flat theme (production)
-├── illustrative.html     # Illustrative theme (preview)
+├── index.html            # The page
 ├── css/
-│   ├── flat.css          # Styles for index.html
-│   └── illustrative.css  # Styles for illustrative.html
+│   └── flat.css          # Styles for index.html
 ├── js/
-│   └── main.js           # Shared: mobile nav toggle + lead-form submit
+│   └── main.js           # Mobile nav toggle + lead-form submit + video facade
 ├── assets/
 │   ├── images/           # Page illustrations
 │   └── logos/            # Sievax brand logo kit (SVG / PNG / JPG / PDF)
@@ -33,18 +22,23 @@ marked **remove before production** in both files.
 └── netlify.toml          # Build → dist/
 ```
 
-Each stylesheet is self-contained and follows the same section order (see the
-table of contents at the top of the file), so the two themes are easy to diff.
+The stylesheet follows a fixed section order — see the table of contents at the
+top of the file.
 
 ## Going live — before launch
 
-- **Lead form** — in both pages, replace `REPLACE_WITH_FORM_ID` in the form
-  `action` with a real [Formspree](https://formspree.io) (or Basin/Tally)
-  endpoint that delivers to `jan@sievax.be`. Until then the form runs in
-  "demo mode": it confirms without sending.
-- **Preview switcher** — delete the `.vswitch` link at the bottom of each page.
+- **Lead form** — replace `REPLACE_WITH_FORM_ID` in the form `action` with a
+  real [Formspree](https://formspree.io) (or Basin/Tally) endpoint that
+  delivers to `jan@sievax.be`. Until then the form runs in "demo mode": it
+  confirms without sending.
+- **Explainer video** — replace `REPLACE_WITH_YOUTUBE_ID` in the
+  `data-video-id` attribute on `#videoEmbed`. Until then the play button
+  does nothing.
+- **Testimonials** — the three quotes are placeholders attributed to
+  `[ Name ]` / `[ Organisation ]`. Swap in real names and photos, or remove
+  the section. Do not publish as-is.
 - **Cohort details** — fill in the `<!-- ... -->` placeholders (price, start
-  date) and swap the testimonial placeholders for real names/photos.
+  date, seat count).
 - **Social image** — point `og:image` / `twitter:image` at a dedicated
   1200×630 image.
 
@@ -59,6 +53,6 @@ python3 -m http.server
 
 ## Deploy
 
-Netlify runs the command in `netlify.toml`, copying the two pages, `css/`,
+Netlify runs the command in `netlify.toml`, copying `index.html`, `css/`,
 `js/` and `assets/` into `dist/`. `docs/` stays in the repo but off the
 public site.

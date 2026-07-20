@@ -1,8 +1,8 @@
 /* ============================================================================
    SIEVAX ACADEMY · Shared front-end behaviour
    ----------------------------------------------------------------------------
-   Loaded with `defer` by both index.html and illustrative.html, so the DOM is
-   parsed before either module runs. Two small, self-contained modules:
+   Loaded with `defer` by index.html, so the DOM is parsed before any module
+   runs. Three small, self-contained modules:
 
      1. Mobile navigation — hamburger toggle with synced ARIA state.
      2. Lead form         — AJAX submit with an inline success state.
