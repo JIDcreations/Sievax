@@ -1,8 +1,22 @@
 /* ============================================================================
    SIEVAX ACADEMY · Stylesheet
    ----------------------------------------------------------------------------
-   Production stylesheet. Mirrors sievax.be — Poppins, flat surfaces, no drop
-   shadows, pill buttons, generous radii.
+   Production stylesheet. Black/yellow dominant — deliberately the inverse of
+   the light sievax.be, so the academy reads as its own thing.
+
+   THE IDEA — "the strategist's blackboard"
+   The brand language is Jan's whiteboard: yellow highlighter, black marker.
+   Inverted, that becomes a blackboard: the board is near-black, YELLOW is the
+   marker (highlighter, arrows, discs, key surfaces), and WHITE is reserved
+   almost entirely for the hand-drawn sketches, which stay on paper. Little
+   white by design — white is what's pinned to the board, not the board.
+
+   COLOR ROLES (why there are two "dark" tokens and two "light" ones)
+     --board      page background, near-black
+     --surface    raised panels — lifts off the board without a shadow
+     --fg         primary text on board/surface
+     --on-yellow  text on yellow surfaces — stays black, never flips
+     --paper      true white. Sketch frames and form inputs ONLY.
 
    Paired page    : index.html
    Shared scripts : js/main.js  (mobile nav toggle + lead-form submit + video)
@@ -10,34 +24,42 @@
    CONTENTS  (search the label to jump)
      Design tokens · Reset & base · Layout · Accessibility · Text helpers ·
      Buttons · Section heads · NAV · HERO · GAP · AUDIENCE · OUTCOMES ·
-     PROGRAM · TRAINER · TESTIMONIALS · CONVERSION · FAQ · FINAL · FOOTER ·
-     CTA band · Mobile sticky CTA · RESPONSIVE
+     PROGRAM · TRAINER · VIDEO · TESTIMONIALS · CONVERSION · FAQ · FINAL ·
+     FOOTER · Mobile sticky CTA · RESPONSIVE
    ============================================================================ */
 
 :root {
+  /* brand — locked by the Sievax brand guide */
   --yellow: #fee447;
-  --yd: #f2ce00;
-  --ink: #111111;
-  --paper: #ffffff;
-  --board: #fcfcfa; /* whiteboard off-white */
-  --muted: rgba(17, 17, 17, 0.72);
-  --line: rgba(17, 17, 17, 0.14);
-  --grid: rgba(17, 17, 17, 0.045); /* faint graph-paper lines */
-  --disp: "Poppins", sans-serif; /* mirror sievax.be (live site uses Poppins) */
+  --yd: #ffef8a; /* yellow hover: brightens on dark (was darkened on light) */
+
+  /* surfaces */
+  --board: #0b0b0b; /* the blackboard */
+  --surface: #171716; /* raised panel, lifts without a shadow */
+  --surface-2: #1f1f1d; /* second lift — inputs on dark, hover states */
+  --paper: #ffffff; /* sketches + form fields ONLY */
+
+  /* text */
+  --fg: #f7f6f2; /* chalk */
+  --muted: rgba(247, 246, 242, 0.7); /* secondary text — 11:1 on --board */
+  --faint: rgba(247, 246, 242, 0.55); /* labels only, never body copy */
+  --on-yellow: #0b0b0b; /* text on yellow — never flips */
+
+  --line: rgba(247, 246, 242, 0.16);
+  --line-strong: rgba(247, 246, 242, 0.32);
+
+  --disp: "Poppins", sans-serif; /* mirrors sievax.be */
   --body: "Poppins", sans-serif;
-  /* soft depth (sievax.be uses soft/no shadow — not hard offset "sticker" shadows) */
-  --shadow: none; /* flat — no shadows */
-  --shadow-sm: none;
+
+  /* no shadow tokens: depth comes from surface lift + hairlines, never shadow */
   --radius: 22px;
-  /* hand-drawn yellow highlighter swipe (behind key words) */
-  --swipe: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20400%2040'%20preserveAspectRatio='none'%3E%3Cpath%20d='M3,9%20C60,4%20140,6%20210,7%20C300,9%20350,3%20397,8%20L396,33%20C330,37%20240,31%20150,33%20C90,34%2045,35%204,31%20Z'%20fill='%23FEE447'/%3E%3C/svg%3E");
-  /* hand-drawn black marker underline */
-  --uline: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20200%2012'%20preserveAspectRatio='none'%3E%3Cpath%20d='M2,7%20C48,3%20100,10%20150,5%20C170,3%20186,7%20198,5'%20stroke='%23111111'%20stroke-width='2.5'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E");
-  /* clean straight connector arrows (roadmap) */
-  --arrR: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2052%2024'%3E%3Cpath%20d='M2,12%20L44,12%20M37,6%20L46,12%20L37,18'%20stroke='%23111111'%20stroke-width='2'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
-  --arrL: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2052%2024'%3E%3Cpath%20d='M50,12%20L8,12%20M15,6%20L6,12%20L15,18'%20stroke='%23111111'%20stroke-width='2'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
-  --arrD: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2052'%3E%3Cpath%20d='M12,2%20L12,44%20M6,37%20L12,46%20L18,37'%20stroke='%23111111'%20stroke-width='2'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
+
+  /* connector arrows (roadmap) — yellow, i.e. drawn in marker on the board */
+  --arrR: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2052%2024'%3E%3Cpath%20d='M2,12%20L44,12%20M37,6%20L46,12%20L37,18'%20stroke='%23FEE447'%20stroke-width='2'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
+  --arrL: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2052%2024'%3E%3Cpath%20d='M50,12%20L8,12%20M15,6%20L6,12%20L15,18'%20stroke='%23FEE447'%20stroke-width='2'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
+  --arrD: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2052'%3E%3Cpath%20d='M12,2%20L12,44%20M6,37%20L12,46%20L18,37'%20stroke='%23FEE447'%20stroke-width='2'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -47,12 +69,15 @@ html {
   scroll-behavior: smooth;
   overflow-x: clip;
   scroll-padding-top: 88px;
+  /* tells the UA to render form controls, scrollbars and caret dark */
+  color-scheme: dark;
 }
 body {
   font-family: var(--body);
-  color: var(--ink);
+  color: var(--fg);
   background: var(--board);
-  line-height: 1.65;
+  /* light-on-dark reads lighter: a touch more leading than the light theme */
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
@@ -69,8 +94,16 @@ h3,
 h4 {
   font-family: var(--disp);
   font-weight: 600;
-  line-height: 1.1;
+  line-height: 1.14;
   letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+::selection {
+  background: var(--yellow);
+  color: var(--on-yellow);
 }
 
 .wrap {
@@ -83,14 +116,30 @@ section {
   position: relative;
 }
 
+/* ── Yellow-drenched sections. Everything inside flips to black ink. ──
+   The page default is dark, so these are the exceptions, not `.on-ink`. */
+.on-yellow {
+  background: var(--yellow);
+  color: var(--on-yellow);
+}
+.on-yellow h2,
+.on-yellow h3,
+.on-yellow p,
+.on-yellow .sec-lead {
+  color: var(--on-yellow);
+}
+.on-yellow .sec-lead {
+  opacity: 0.78;
+}
+
 /* skip link — visible on keyboard focus */
 .skip-link {
   position: absolute;
   left: 16px;
   top: -60px;
   z-index: 100;
-  background: var(--ink);
-  color: #fff;
+  background: var(--yellow);
+  color: var(--on-yellow);
   font-family: var(--disp);
   font-weight: 700;
   font-size: 14px;
@@ -101,7 +150,7 @@ section {
 }
 .skip-link:focus {
   top: 14px;
-  outline: 3px solid var(--yellow);
+  outline: 3px solid var(--fg);
   outline-offset: 2px;
 }
 main:focus {
@@ -114,14 +163,19 @@ button:focus-visible,
 summary:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid var(--ink);
+  outline: 3px solid var(--yellow);
   outline-offset: 3px;
   border-radius: 2px;
 }
-.on-ink a:focus-visible,
-.on-ink button:focus-visible,
-.on-ink summary:focus-visible {
-  outline-color: var(--yellow);
+/* on yellow, a yellow ring is invisible — go to ink */
+.on-yellow a:focus-visible,
+.on-yellow button:focus-visible,
+.on-yellow summary:focus-visible,
+.form-card a:focus-visible,
+.form-card button:focus-visible,
+.form-card input:focus-visible,
+.form-card textarea:focus-visible {
+  outline-color: var(--on-yellow);
 }
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -145,7 +199,7 @@ textarea:focus-visible {
   font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--fg);
 }
 .eyebrow::before {
   content: "";
@@ -155,8 +209,11 @@ textarea:focus-visible {
   background: var(--yellow);
   flex: 0 0 auto;
 }
-.on-ink .eyebrow {
-  color: #fff;
+.on-yellow .eyebrow {
+  color: var(--on-yellow);
+}
+.on-yellow .eyebrow::before {
+  background: var(--on-yellow);
 }
 /* eyebrow above a heading gets breathing room */
 .sec-head .eyebrow,
@@ -166,42 +223,29 @@ textarea:focus-visible {
   margin-bottom: 12px;
 }
 
-/* highlighter + underline helpers */
-.hl {
-  position: relative;
-  white-space: nowrap;
-  color: var(--ink);
-}
-.hl::before {
-  content: "";
-  position: absolute;
-  left: -0.06em;
-  right: -0.06em;
-  bottom: 0.08em;
-  height: 0.34em;
-  background: var(--yellow);
-  border-radius: 1px;
-  z-index: -1;
-}
+/* marker underline — the one emphasis treatment, used at every heading size.
+
+   Real text-decoration rather than an absolutely-positioned pseudo-element:
+   it wraps correctly across lines (a pseudo can only underline one box, so a
+   heading that breaks loses the stroke), it needs no `white-space: nowrap`
+   holding the line together, and it scales with the type.
+   `skip-ink: none` keeps the stroke unbroken through descenders, the way a
+   marker drawn under a word would run straight through the tail of a "g". */
 .uline {
-  position: relative;
-  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-color: var(--yellow);
+  text-decoration-thickness: max(3px, 0.075em); /* floor keeps it visible small */
+  text-underline-offset: 0.16em;
+  text-decoration-skip-ink: none;
 }
-.uline::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -0.08em;
-  height: 3px;
-  background: var(--ink);
-  border-radius: 2px;
+.on-yellow .uline {
+  text-decoration-color: var(--on-yellow);
 }
 .ymark {
   color: var(--yellow);
 }
 
-/* buttons — drawn "sticker" primary */
+/* buttons */
 .btn {
   text-decoration: none;
   font-family: var(--disp);
@@ -213,52 +257,50 @@ textarea:focus-visible {
   align-items: center;
   gap: 10px;
   transition:
-    transform 0.16s,
+    transform 0.16s cubic-bezier(0.22, 1, 0.36, 1),
     background 0.16s,
-    color 0.16s;
+    color 0.16s,
+    border-color 0.16s;
   cursor: pointer;
   border: 1.5px solid transparent;
 }
 .btn-yellow {
   background: var(--yellow);
-  color: var(--ink);
+  color: var(--on-yellow);
 }
 .btn-yellow:hover {
   background: var(--yd);
   transform: translateY(-2px);
 }
+/* on a yellow section, the primary button inverts to ink */
+.on-yellow .btn-yellow,
 .btn-dark {
-  background: var(--ink);
-  color: #fff;
+  background: var(--on-yellow);
+  color: var(--fg);
 }
+.on-yellow .btn-yellow:hover,
 .btn-dark:hover {
   background: #000;
   transform: translateY(-2px);
 }
 .btn-ghost {
   background: transparent;
-  color: var(--ink);
-  border-color: var(--ink);
+  color: var(--fg);
+  border-color: var(--line-strong);
 }
 .btn-ghost:hover {
-  background: var(--ink);
-  color: #fff;
+  background: var(--fg);
+  color: var(--board);
+  border-color: var(--fg);
 }
-.on-ink .btn-ghost {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.5);
+.on-yellow .btn-ghost {
+  color: var(--on-yellow);
+  border-color: rgba(11, 11, 11, 0.4);
 }
-.on-ink .btn-ghost:hover {
-  background: #fff;
-  color: var(--ink);
-  border-color: #fff;
-}
-
-/* marker box */
-.mbox {
-  border: 1.5px solid var(--ink);
-  border-radius: 6px;
-  background: var(--paper);
+.on-yellow .btn-ghost:hover {
+  background: var(--on-yellow);
+  color: var(--yellow);
+  border-color: var(--on-yellow);
 }
 
 /* generic section head */
@@ -271,15 +313,8 @@ textarea:focus-visible {
   max-width: 54ch;
   margin-top: 16px;
 }
-.on-ink h2,
-.on-ink h3 {
-  color: #fff;
-}
-.on-ink .sec-lead {
-  color: rgba(255, 255, 255, 0.72);
-}
 
-/* NAV — light, notebook rule */
+/* NAV */
 nav {
   position: sticky;
   top: 0;
@@ -313,14 +348,14 @@ nav {
   padding: 12px 4px;
 }
 .nav-links a:hover {
-  color: var(--ink);
+  color: var(--yellow);
 }
 .nav-cta {
   font-family: var(--disp);
   font-weight: 700;
   font-size: 14px;
   background: var(--yellow);
-  color: var(--ink);
+  color: var(--on-yellow);
   padding: 11px 22px;
   border-radius: 999px;
   text-decoration: none;
@@ -343,7 +378,7 @@ nav {
   height: 46px;
   padding: 0;
   background: transparent;
-  border: 1.5px solid var(--ink);
+  border: 1.5px solid var(--line-strong);
   border-radius: 8px;
   cursor: pointer;
 }
@@ -351,7 +386,7 @@ nav {
   display: block;
   width: 20px;
   height: 2.5px;
-  background: var(--ink);
+  background: var(--fg);
   border-radius: 2px;
   margin: 0 auto;
   transition:
@@ -368,20 +403,35 @@ nav {
   transform: translateY(-7.5px) rotate(-45deg);
 }
 
-/* HERO — the whiteboard */
+/* HERO — the blackboard */
 .hero {
   background:
     radial-gradient(
       135% 105% at 88% -25%,
-      rgba(254, 228, 71, 0.2),
-      transparent 52%
+      rgba(254, 228, 71, 0.16),
+      transparent 56%
     ),
     var(--board);
   border-bottom: 1px solid var(--line);
 }
+/* two columns: copy left, enrolment card right. The card stretches to the
+   copy's full height, which is what gives it the tall portrait proportion —
+   no fixed height to keep in sync with the text. */
 .hero-inner {
   padding-top: clamp(46px, 7vw, 78px);
   padding-bottom: clamp(52px, 8vw, 86px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(290px, 380px);
+  gap: clamp(30px, 4.5vw, 60px);
+  align-items: stretch;
+}
+.hero-copy {
+  min-width: 0; /* let the copy column shrink instead of forcing overflow */
+  align-self: center;
+  /* the h1 sizes off THIS column, not the viewport — otherwise an 8vw
+     heading stays huge while the column halves, and the title wraps to
+     three lines the moment the card takes its share of the width */
+  container-type: inline-size;
 }
 .hero .kbadge {
   display: inline-flex;
@@ -392,8 +442,9 @@ nav {
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  background: var(--paper);
-  border: 1.5px solid var(--ink);
+  background: var(--surface);
+  color: var(--fg);
+  border: 1.5px solid var(--line-strong);
   border-radius: 999px;
   padding: 8px 16px;
 }
@@ -402,11 +453,13 @@ nav {
   height: 9px;
   border-radius: 50%;
   background: var(--yellow);
-  border: 1.5px solid var(--ink);
+  border: none;
 }
 .hero h1 {
-  font-size: clamp(42px, 8.2vw, 86px);
-  line-height: 1.04;
+  font-size: clamp(42px, 9.5cqw, 86px);
+  /* a little over the 1.04 a display line would normally take, so the marker
+     underline on the second line clears the descenders of the first */
+  line-height: 1.14;
   letter-spacing: -0.02em;
   margin-top: 24px;
   max-width: 16ch;
@@ -418,7 +471,7 @@ nav {
   margin-top: 26px;
 }
 .hero .sub b {
-  color: var(--ink);
+  color: var(--fg);
   font-weight: 600;
 }
 .hero-actions {
@@ -430,6 +483,7 @@ nav {
 }
 .rise {
   opacity: 0;
+  transform: translateY(16px);
   animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
 }
 .rise.d1 {
@@ -453,32 +507,25 @@ nav {
     transform: none;
   }
 }
-.rise {
-  transform: translateY(16px);
-}
 
-/* enrol index-card */
+/* enrolment card — vertical: yellow stub on top, facts stacked, CTA anchored
+   to the bottom edge */
 .enroll {
-  margin-top: 48px;
   display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  background: var(--ink);
-  color: #fff;
+  flex-direction: column;
+  background: var(--surface);
+  color: var(--fg);
+  border: 1px solid var(--line);
   border-radius: 20px;
   overflow: hidden;
-  max-width: 1080px;
-  border: none;
-  box-shadow: var(--shadow);
 }
 .enroll .stub {
   background: var(--yellow);
-  color: var(--ink);
+  color: var(--on-yellow);
   padding: 20px 26px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-right: 1px solid rgba(17, 17, 17, 0.18);
 }
 .enroll .stub .k {
   font-family: var(--disp);
@@ -494,39 +541,46 @@ nav {
   font-size: 23px;
   margin-top: 2px;
 }
+/* facts take the slack, so the card breathes as the copy column grows */
 .enroll-facts {
   flex: 1;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 34px;
-  padding: 20px 30px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6px 26px;
+}
+.enroll-facts > div {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.enroll-facts > div:last-child {
+  border-bottom: none;
 }
 .enroll-facts .lab {
   font-size: 11.5px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--faint);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 .enroll-facts .val {
   font-family: var(--disp);
   font-weight: 700;
-  font-size: 18px;
-  margin-top: 3px;
+  font-size: 19px;
+  margin-top: 4px;
 }
 .enroll-go {
   text-decoration: none;
   background: var(--yellow);
-  color: var(--ink);
+  color: var(--on-yellow);
   font-family: var(--disp);
   font-weight: 700;
   font-size: 15px;
-  padding: 0 30px;
+  padding: 18px 30px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 9px;
   transition: background 0.16s;
-  border-left: 1px solid rgba(17, 17, 17, 0.18);
 }
 .enroll-go:hover {
   background: var(--yd);
@@ -552,33 +606,35 @@ nav {
 /* yellow marker accent (wraps safely — no nowrap) */
 .gap-accent {
   background: var(--yellow);
-  color: var(--ink);
+  color: var(--on-yellow);
   font-weight: 600;
   padding: 0 0.12em;
   border-radius: 3px;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
+/* Sketch frames — the one place white belongs. The drawings are on paper,
+   pinned to the board; boxing them in white is the point, not an oversight. */
 .gap-img {
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: var(--shadow);
 }
 .gap-img img {
   display: block;
   width: 100%;
 }
 
-/* 20/80 thesis bar — the spine (made loud on purpose) */
+/* 20/80 thesis bar — the spine of the pitch.
+   Yellow now carries the 80%, not the 20%: the marker belongs on the part
+   the academy is actually about. */
 .thesis {
   margin-top: clamp(44px, 6vw, 68px);
-  border: 2.5px solid var(--ink);
+  border: 2.5px solid var(--yellow);
   border-radius: 22px;
   overflow: hidden;
-  background: var(--paper);
-  box-shadow: var(--shadow-sm);
+  background: var(--surface);
 }
 .thesis-bar {
   display: flex;
@@ -588,8 +644,8 @@ nav {
 }
 .thesis-bar .b20 {
   flex: 0 0 20%;
-  background: var(--yellow);
-  color: var(--ink);
+  background: var(--board);
+  color: var(--muted);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -600,8 +656,8 @@ nav {
 }
 .thesis-bar .b80 {
   flex: 1;
-  background: var(--ink);
-  color: #fff;
+  background: var(--yellow);
+  color: var(--on-yellow);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -612,7 +668,7 @@ nav {
 }
 .thesis-legend {
   display: flex;
-  border-top: 2.5px solid var(--ink);
+  border-top: 2.5px solid var(--yellow);
 }
 .thesis-legend > div {
   padding: 18px 24px;
@@ -620,20 +676,21 @@ nav {
 }
 .thesis-legend .l20 {
   flex: 0 0 20%;
-  border-right: 2.5px solid var(--ink);
+  border-right: 2.5px solid var(--yellow);
   font-family: var(--disp);
   font-weight: 700;
   font-size: 15px;
   letter-spacing: 0.005em;
   min-width: max-content;
+  color: var(--fg);
 }
 .thesis-legend .l80 {
   flex: 1;
   color: var(--muted);
 }
 
-/* AUDIENCE */
-/* audience: two stacked cards on the left, framed pyramid figure on the right */
+/* AUDIENCE — two stacked cards on the left, framed sketch on the right.
+   The "yes" card is the yellow one: the affirmative gets the marker. */
 .aud-layout {
   display: grid;
   grid-template-columns: 1fr 0.92fr;
@@ -647,7 +704,7 @@ nav {
   gap: 22px;
 }
 .aud-cards .aud-card {
-  flex: 1; /* both cards grow to fill the image's height */
+  flex: 1; /* both cards grow to fill the sketch's height */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -660,13 +717,12 @@ nav {
   padding: clamp(26px, 3vw, 34px);
 }
 .aud-yes {
-  background: var(--ink);
-  color: #fff;
+  background: var(--yellow);
+  color: var(--on-yellow);
   border: none;
-  box-shadow: var(--shadow);
 }
 .aud-yes h3 {
-  color: #fff;
+  color: var(--on-yellow);
   font-size: 20px;
   margin-bottom: 14px;
   display: flex;
@@ -674,11 +730,11 @@ nav {
   gap: 11px;
 }
 .aud-yes p {
-  color: rgba(255, 255, 255, 0.74);
+  color: rgba(11, 11, 11, 0.8);
   font-size: 16.5px;
 }
 .aud-no {
-  background: #f4f2ec;
+  background: var(--surface);
   border: 1px solid var(--line);
 }
 .aud-no h3 {
@@ -699,18 +755,14 @@ nav {
   height: 26px;
 }
 
-/* OUTCOMES — dark numbered grid */
-.outcomes {
-  background: var(--ink);
-  color: #fff;
-}
+/* OUTCOMES — the yellow drench. The one full-bleed bright beat mid-page. */
 .out-list {
   margin-top: clamp(34px, 5vw, 48px);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1px;
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(11, 11, 11, 0.22);
+  border: 1px solid rgba(11, 11, 11, 0.22);
   border-radius: 18px;
   overflow: hidden;
 }
@@ -719,15 +771,15 @@ nav {
   gap: 18px;
   align-items: flex-start;
   padding: clamp(24px, 2.6vw, 30px) clamp(24px, 2.6vw, 32px);
-  background: var(--ink);
+  background: var(--yellow);
 }
 .out-item .num {
   flex: 0 0 auto;
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: var(--yellow);
-  color: var(--ink);
+  background: var(--on-yellow);
+  color: var(--yellow);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -738,10 +790,10 @@ nav {
 }
 .out-item p {
   font-size: 16.5px;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--on-yellow);
 }
 
-/* PROGRAM — marker timeline */
+/* PROGRAM — roadmap of cards, snaking L→R then back, joined in marker */
 .prog-top {
   display: flex;
   flex-wrap: wrap;
@@ -759,15 +811,17 @@ nav {
   font-family: var(--disp);
   font-size: 13.5px;
   font-weight: 700;
-  border: 1.5px solid var(--ink);
+  border: 1.5px solid var(--line-strong);
   border-radius: 999px;
   padding: 8px 15px;
-  background: var(--paper);
+  background: transparent;
+  color: var(--fg);
 }
 .pill.solid {
   background: var(--yellow);
+  color: var(--on-yellow);
+  border-color: var(--yellow);
 }
-/* roadmap — a hand-drawn path of sticker cards, snaking L→R then back */
 .roadmap {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -777,11 +831,10 @@ nav {
 }
 .stop {
   position: relative;
-  background: var(--paper);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 20px;
   padding: 28px 24px 24px;
-  box-shadow: var(--shadow-sm);
 }
 .stop .no {
   position: absolute;
@@ -791,8 +844,9 @@ nav {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: var(--paper);
-  border: 1.5px solid var(--ink);
+  background: var(--surface-2);
+  color: var(--fg);
+  border: 1.5px solid var(--line-strong);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -802,6 +856,8 @@ nav {
 }
 .stop:nth-child(odd) .no {
   background: var(--yellow);
+  color: var(--on-yellow);
+  border-color: var(--yellow);
 }
 .stop .wk {
   font-family: var(--disp);
@@ -809,14 +865,14 @@ nav {
   font-size: 11px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--faint);
   margin-bottom: 7px;
 }
 .stop .t {
   font-family: var(--disp);
   font-weight: 700;
   font-size: clamp(17px, 2.2vw, 20px);
-  line-height: 1.05;
+  line-height: 1.12;
 }
 .stop .d {
   color: var(--muted);
@@ -863,17 +919,17 @@ nav {
   display: grid;
   grid-template-columns: minmax(300px, 380px) 1fr;
   gap: clamp(32px, 5vw, 54px);
-  align-items: stretch; /* photo stretches to the full height of the copy column */
+  align-items: stretch; /* photo stretches to the full height of the copy */
 }
-/* photo slot — fills the row height; yellow "JM" initials show until jan-gs.png loads */
+/* photo slot — yellow "JM" monogram shows only if jan-gs.png fails to load */
 .tr-photo {
   position: relative;
   height: 100%;
   min-height: 360px;
   border-radius: 20px;
   overflow: hidden;
-  background: #ececea;
-  border: 2px solid var(--ink);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
 }
 .tr-photo img {
   position: absolute;
@@ -883,7 +939,7 @@ nav {
   object-fit: cover;
   object-position: center 20%; /* portrait: keep upper-center face in frame */
   display: block;
-  z-index: 1; /* cover the JM fallback; initials show only if the img errors out */
+  z-index: 1; /* covers the JM fallback unless the img errors out */
 }
 .tr-initials {
   position: absolute;
@@ -895,7 +951,7 @@ nav {
   font-weight: 700;
   font-size: clamp(56px, 9vw, 92px);
   letter-spacing: -0.02em;
-  color: var(--ink);
+  color: var(--yellow);
 }
 .tr-copy h2 {
   font-size: clamp(28px, 4vw, 42px);
@@ -905,6 +961,7 @@ nav {
   color: var(--muted);
   font-size: 16.5px;
   margin-top: 16px;
+  max-width: 68ch;
 }
 .tr-tags {
   display: flex;
@@ -916,12 +973,12 @@ nav {
   font-family: var(--disp);
   font-size: 13px;
   font-weight: 700;
-  border: 1.5px solid var(--ink);
+  border: 1.5px solid var(--line-strong);
   border-radius: 999px;
   padding: 7px 15px;
 }
 
-/* VIDEO — click-to-load explainer (flat: dark board, soft corners) */
+/* VIDEO — click-to-load explainer */
 .vid-frame {
   position: relative;
   margin-top: clamp(28px, 4vw, 44px);
@@ -931,12 +988,11 @@ nav {
   background:
     radial-gradient(
       120% 130% at 82% -12%,
-      rgba(254, 228, 71, 0.26),
+      rgba(254, 228, 71, 0.22),
       transparent 55%
     ),
-    var(--ink);
+    var(--surface);
   border: 1px solid var(--line);
-  box-shadow: var(--shadow);
 }
 .vid-frame iframe {
   position: absolute;
@@ -959,18 +1015,18 @@ nav {
   background: transparent;
   border: 0;
   cursor: pointer;
-  color: #fff;
+  color: var(--fg);
 }
 .vid-disc {
   width: clamp(66px, 8vw, 88px);
   height: clamp(66px, 8vw, 88px);
   border-radius: 50%;
   background: var(--yellow);
-  color: var(--ink);
+  color: var(--on-yellow);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.16s;
+  transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .vid-disc svg {
   width: 40%;
@@ -992,7 +1048,7 @@ nav {
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--faint);
 }
 
 /* TESTIMONIALS */
@@ -1008,27 +1064,23 @@ nav {
   padding: 28px;
   display: flex;
   flex-direction: column;
-  background: var(--paper);
-  box-shadow: var(--shadow-sm);
+  background: var(--surface);
 }
 .tst:nth-child(2) {
-  border-color: var(--ink);
+  border-color: var(--yellow);
 }
 .tst .q {
   font-family: var(--disp);
   font-weight: 700;
   font-size: 44px;
   line-height: 0.5;
-  color: var(--ink);
-}
-.tst .q::selection {
-  background: var(--yellow);
+  color: var(--yellow);
 }
 .tst p {
   font-family: var(--disp);
   font-weight: 500;
   font-size: 17px;
-  line-height: 1.42;
+  line-height: 1.5;
   margin-top: 14px;
 }
 .tst .who {
@@ -1045,8 +1097,8 @@ nav {
   height: 46px;
   border-radius: 50%;
   background: var(--yellow);
-  color: var(--ink);
-  border: 1.5px solid var(--ink);
+  color: var(--on-yellow);
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1069,11 +1121,7 @@ nav {
   color: var(--muted);
 }
 
-/* CONVERSION — dark */
-.convert {
-  background: var(--ink);
-  color: #fff;
-}
+/* CONVERSION */
 .convert-head {
   text-align: center;
   margin-bottom: 44px;
@@ -1103,7 +1151,7 @@ nav {
   font-family: var(--disp);
   font-weight: 600;
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--muted);
 }
 .convert-alt a {
   color: var(--yellow);
@@ -1117,40 +1165,41 @@ nav {
   border-color: var(--yellow);
 }
 .info-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: 20px;
   padding: 30px;
-  color: #fff;
+  color: var(--fg);
 }
 .info-card h3 {
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--faint);
   margin-bottom: 16px;
 }
 .price-row {
   display: flex;
+  flex-wrap: wrap; /* "On request" must not force the card wider than mobile */
   align-items: baseline;
   gap: 14px;
 }
 .price-row .big {
   font-family: var(--disp);
   font-weight: 700;
-  font-size: 52px;
+  font-size: clamp(38px, 5vw, 52px);
   color: var(--yellow);
   line-height: 1;
 }
 .price-row .note {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.62);
+  color: var(--faint);
 }
 .early {
   margin-top: 18px;
   background: var(--yellow);
-  color: var(--ink);
+  color: var(--on-yellow);
   border: none;
   border-radius: 12px;
   padding: 13px 16px;
@@ -1169,35 +1218,37 @@ nav {
   flex: 1;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
   padding: 11px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  border-bottom: 1px solid var(--line);
   font-size: 15px;
 }
 .facts li:last-child {
   border-bottom: none;
 }
 .facts .fk {
-  color: rgba(255, 255, 255, 0.62);
+  color: var(--faint);
 }
 .facts .fv {
   font-family: var(--disp);
   font-weight: 700;
+  text-align: right;
 }
+/* the form is the page's one job — it gets the loudest surface */
 .form-card {
   background: var(--yellow);
   border: none;
   border-radius: var(--radius);
   padding: clamp(28px, 3vw, 36px);
-  color: var(--ink);
-  box-shadow: var(--shadow);
+  color: var(--on-yellow);
 }
 .form-card h3 {
   font-size: 26px;
-  color: var(--ink);
+  color: var(--on-yellow);
 }
 .form-card .fl {
   font-size: 15px;
-  color: rgba(17, 17, 17, 0.86);
+  color: rgba(11, 11, 11, 0.82);
   margin-top: 8px;
 }
 .form-card form {
@@ -1210,16 +1261,17 @@ nav {
 .form-card textarea {
   font-family: var(--body);
   font-size: 15px;
+  color: var(--on-yellow);
   padding: 22px 15px 8px;
-  border: 1.5px solid var(--ink);
+  border: 1.5px solid var(--on-yellow);
   border-radius: 8px;
-  background: #fff;
+  background: var(--paper);
   outline: none;
   width: 100%;
 }
 .form-card input:focus,
 .form-card textarea:focus {
-  outline: 3px solid var(--ink);
+  outline: 3px solid var(--on-yellow);
   outline-offset: 1px;
 }
 /* floating labels — persistent, so context stays while typing */
@@ -1231,7 +1283,7 @@ nav {
   left: 16px;
   top: 15px;
   font-size: 15px;
-  color: rgba(17, 17, 17, 0.72);
+  color: rgba(11, 11, 11, 0.72);
   pointer-events: none;
   transition:
     top 0.14s,
@@ -1247,7 +1299,7 @@ nav {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--on-yellow);
 }
 .form-card textarea {
   resize: vertical;
@@ -1258,46 +1310,6 @@ nav {
   font-size: 16px;
   margin-top: 4px;
 }
-.divider {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 20px;
-}
-.divider .ln {
-  flex: 1;
-  height: 1.5px;
-  background: rgba(17, 17, 17, 0.3);
-}
-.divider span {
-  font-size: 13px;
-  color: rgba(17, 17, 17, 0.85);
-  font-family: var(--disp);
-  font-weight: 700;
-}
-.calendly-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  margin-top: 16px;
-  text-decoration: none;
-  font-family: var(--disp);
-  font-weight: 700;
-  font-size: 15px;
-  color: var(--ink);
-  border: 1.5px solid var(--ink);
-  border-radius: 999px;
-  padding: 13px;
-  background: #fff;
-  transition:
-    background 0.16s,
-    color 0.16s;
-}
-.calendly-btn:hover {
-  background: var(--ink);
-  color: var(--yellow);
-}
 .success {
   display: none;
   text-align: center;
@@ -1307,9 +1319,9 @@ nav {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: var(--ink);
+  background: var(--on-yellow);
   color: var(--yellow);
-  border: 1.5px solid #000;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1319,20 +1331,20 @@ nav {
 .success h3 {
   font-size: 22px;
   margin-top: 16px;
-  color: var(--ink);
+  color: var(--on-yellow);
 }
 .success p {
   font-size: 15px;
-  color: rgba(17, 17, 17, 0.85);
+  color: rgba(11, 11, 11, 0.82);
   margin-top: 8px;
 }
 
 /* FAQ */
 details {
-  border-bottom: 1.5px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 details:first-of-type {
-  border-top: 1.5px solid var(--line);
+  border-top: 1px solid var(--line);
 }
 summary {
   list-style: none;
@@ -1345,6 +1357,10 @@ summary {
   justify-content: space-between;
   align-items: center;
   gap: 20px;
+  transition: color 0.16s;
+}
+summary:hover {
+  color: var(--yellow);
 }
 summary::-webkit-details-marker {
   display: none;
@@ -1355,12 +1371,13 @@ summary .ic {
   height: 28px;
   border-radius: 50%;
   background: var(--yellow);
-  border: 1.5px solid var(--ink);
+  color: var(--on-yellow);
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  transition: transform 0.2s;
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 details[open] summary .ic {
   transform: rotate(45deg);
@@ -1374,26 +1391,27 @@ details p {
 
 /* FINAL — the yellow send-off */
 .final {
-  background: var(--yellow);
   text-align: center;
 }
 .final h2 {
   font-size: clamp(32px, 5.6vw, 58px);
   max-width: 15ch;
   margin: 0 auto;
-  line-height: 0.98;
+  line-height: 1.02;
 }
 .final .seats {
   font-family: var(--disp);
   font-weight: 700;
   margin: 24px 0 30px;
   letter-spacing: 0.01em;
+  color: rgba(11, 11, 11, 0.8);
 }
 
 /* FOOTER */
 footer {
-  background: var(--ink);
-  color: #fff;
+  background: var(--board);
+  color: var(--fg);
+  border-top: 1px solid var(--line);
 }
 .foot-inner {
   display: flex;
@@ -1408,7 +1426,7 @@ footer {
 }
 .foot-inner .mid {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.62);
+  color: var(--faint);
 }
 .foot-inner .mid a {
   color: var(--yellow);
@@ -1417,12 +1435,12 @@ footer {
 }
 .foot-inner .mail {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.62);
+  color: var(--faint);
   text-decoration: none;
   font-weight: 600;
 }
 .foot-inner .mail:hover {
-  color: #fff;
+  color: var(--yellow);
 }
 
 /* mobile sticky CTA */
@@ -1447,6 +1465,18 @@ footer {
 }
 
 /* RESPONSIVE */
+/* the hero carries a big display heading, so it needs the full width back
+   sooner than the other two-column sections */
+@media (max-width: 1100px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .enroll {
+    margin-top: 44px;
+    max-width: 520px;
+  }
+}
 @media (max-width: 900px) {
   .gap-grid,
   .convert-grid,
@@ -1469,9 +1499,6 @@ footer {
     aspect-ratio: 1;
     max-width: 320px;
     justify-self: center;
-  }
-  .gap-img {
-    transform: none;
   }
   .roadmap {
     grid-template-columns: 1fr;
@@ -1509,7 +1536,6 @@ footer {
       calc(12px + env(safe-area-inset-bottom));
     background: var(--board);
     border-top: 1px solid var(--line);
-    box-shadow: 0 -10px 26px -14px rgba(17, 17, 17, 0.22);
   }
   .sticky-cta .btn {
     width: 100%;
@@ -1528,9 +1554,8 @@ footer {
     align-items: stretch;
     gap: 8px;
     background: var(--board);
-    border-bottom: 1.5px solid var(--ink);
+    border-bottom: 1px solid var(--line);
     padding: 14px clamp(22px, 4.5vw, 72px) 20px;
-    box-shadow: 0 16px 28px -14px rgba(0, 0, 0, 0.35);
     display: none;
   }
   .nav-links.open {
@@ -1546,26 +1571,12 @@ footer {
     text-align: center;
     justify-content: center;
   }
-  .enroll {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .enroll .stub {
-    border-right: none;
-    border-bottom: 1px solid rgba(17, 17, 17, 0.18);
-  }
-  .enroll-go {
-    justify-content: center;
-    padding: 16px;
-    border-left: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.16);
-  }
   .thesis-legend {
     flex-direction: column;
   }
   .thesis-legend .l20 {
     flex: none;
     border-right: none;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 2.5px solid var(--yellow);
   }
 }

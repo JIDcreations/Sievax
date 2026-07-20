@@ -11,6 +11,9 @@
   <link rel="icon" type="image/svg+xml" href="assets/logos/SVG/beeldmerk geel.svg">
   <link rel="apple-touch-icon" href="assets/logos/logo-black.png">
 
+  <!-- Dark page: colour the mobile browser chrome to match the board -->
+  <meta name="theme-color" content="#0b0b0b">
+
   <!-- Social / Open Graph — set a dedicated 1200×630 og:image before launch -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Sievax Academy">
@@ -41,7 +44,8 @@
 <nav>
   <div class="wrap nav-inner">
     <a href="#top" aria-label="Sievax Academy — home">
-      <img class="logo" src="assets/logos/SVG/sievax-logo.svg" alt="Sievax Academy">
+      <!-- Yellow lockup: the black-glyph version disappears on the dark board -->
+      <img class="logo" src="assets/logos/SVG/logo - geel.svg" alt="Sievax Academy">
     </a>
 
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navmenu" aria-label="Open menu">
@@ -63,17 +67,19 @@
   <!-- ========================= HERO ========================= -->
   <header class="hero" id="top">
     <div class="wrap hero-inner">
+      <div class="hero-copy">
       <span class="kbadge rise d1"><span class="pin"></span>Live cohort-based academy &middot; worldwide</span>
-      <h1 class="rise d2">AI is everywhere.<br><span class="hl">Fluency isn't.</span></h1>
-      <p class="sub rise d3">A live, cohort-based academy for the leaders building real Data &amp; AI strategy — ensuring your investments deliver business value, not just technical outputs. <b>Most of the work is people, process and organization. Only a fraction is the tech.</b></p>
+      <h1 class="rise d2">Data & AI<br><span class="uline">Strategy Sprint</span></h1>
+      <p class="sub rise d3">Most AI initiatives don't fail on technology. They fail on everything around it: strategy, processes, people and&nbsp;leadership. <b>In 7 live weeks, you build the strategy that gets that 80% right.</b></p>
 
       <div class="hero-actions rise d4">
         <a class="btn btn-yellow" href="#apply">Join the next cohort &rarr;</a>
         <a class="btn btn-ghost" href="#program">See the program</a>
       </div>
+      </div>
 
-      <!-- Enrolment "index card" -->
-      <div class="enroll rise d5">
+      <!-- Enrolment card — the hero's right column, full height of the copy -->
+      <aside class="enroll rise d5" aria-label="Cohort enrolment details">
         <div class="stub"><div class="k">Enrolling now</div><div class="v">Cohort 01</div></div>
         <div class="enroll-facts">
           <div><div class="lab">Starts</div><div class="val"><!-- cohort start date -->Announced soon</div></div>
@@ -81,7 +87,7 @@
           <div><div class="lab">Format</div><div class="val">6 weeks &middot; online</div></div>
         </div>
         <a class="enroll-go" href="#apply">Reserve &rarr;</a>
-      </div>
+      </aside>
     </div>
   </header>
 
@@ -122,7 +128,7 @@
         <div class="aud-cards">
           <div class="aud-card aud-yes">
             <h3>
-              <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 13l5 5L20 6" stroke="#FEE447" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="tick" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 13l5 5L20 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
               This is for you
             </h3>
             <p>You're a data leader, CDO, architect, consultant or transformation lead responsible for making AI actually land in your organization — not just demo well. You've seen pilots stall. You want a strategy that survives contact with reality.</p>
@@ -145,7 +151,7 @@
   </section>
 
   <!-- ========================= OUTCOMES ========================= -->
-  <section class="outcomes on-ink">
+  <section class="outcomes on-yellow">
     <div class="wrap">
       <div class="sec-head"><span class="eyebrow">Outcomes</span><h2>What you'll walk away with</h2></div>
 
@@ -233,7 +239,9 @@
         demo mode and the button does nothing.
       -->
       <div class="vid-frame" id="videoEmbed" data-video-id="REPLACE_WITH_YOUTUBE_ID">
-        <button class="vid-play" type="button" aria-label="Play the academy explainer video">
+        <!-- The accessible name must contain the visible label, or voice-control
+             users can't say what they see (WCAG 2.5.3 label-in-name). -->
+        <button class="vid-play" type="button" aria-label="Play: Jan explains the academy, 2 min watch">
           <span class="vid-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
           <span class="vid-label">Jan explains the academy</span>
           <span class="vid-time">2 min watch</span>
@@ -255,7 +263,7 @@
   </section>
 
   <!-- ========================= CONVERSION ========================= -->
-  <section class="convert on-ink" id="apply">
+  <section class="convert" id="apply">
     <div class="wrap">
       <div class="convert-head">
         <span class="eyebrow">Next cohort</span>
@@ -348,7 +356,7 @@
   </section>
 
   <!-- ========================= FINAL CTA ========================= -->
-  <section class="final">
+  <section class="final on-yellow">
     <div class="wrap">
       <h2>Ready to build a strategy that <span class="uline">actually lands</span>?</h2>
       <p class="seats">Only 20 seats &middot; Next cohort starts &mdash; announced soon</p>
@@ -359,7 +367,7 @@
 </main>
 
 <!-- ========================= FOOTER ========================= -->
-<footer class="on-ink">
+<footer>
   <div class="wrap foot-inner">
     <img src="assets/logos/logo-white.png" alt="Sievax">
     <div class="mid">&copy; 2026 Sievax Academy &middot; An initiative by <a href="https://sievax.be" target="_blank" rel="noopener">Sievax</a></div>
@@ -367,10 +375,11 @@
   </div>
 </footer>
 
-<!-- Mobile sticky CTA — keeps the primary action reachable on small screens -->
-<div class="sticky-cta">
+<!-- Mobile sticky CTA — keeps the primary action reachable on small screens.
+     <aside> so the content sits in a landmark rather than orphaned on <body>. -->
+<aside class="sticky-cta" aria-label="Reserve a seat">
   <a class="btn btn-yellow" href="#apply">Reserve your seat &rarr;</a>
-</div>
+</aside>
 
 </body>
 </html>
