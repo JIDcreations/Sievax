@@ -964,20 +964,6 @@ nav {
   margin-top: 16px;
   max-width: 68ch;
 }
-.tr-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
-  margin-top: 22px;
-}
-.tr-tags span {
-  font-family: var(--disp);
-  font-size: 13px;
-  font-weight: 700;
-  border: 1.5px solid var(--line-strong);
-  border-radius: 999px;
-  padding: 7px 15px;
-}
 
 /* VIDEO — click-to-load explainer */
 .vid-frame {
