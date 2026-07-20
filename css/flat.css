@@ -1462,6 +1462,26 @@ details p {
   max-width: 68ch;
 }
 
+/* the soft "let's talk" closer under the FAQ — quiet by design, so it reads
+   as the FAQ's last row rather than competing with the yellow CTA below */
+.faq-talk {
+  margin-top: 44px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+  max-width: 68ch;
+}
+.faq-talk h3 {
+  font-size: 22px;
+}
+.faq-talk p {
+  color: var(--muted);
+  font-size: 16px;
+  margin-top: 10px;
+}
+.faq-talk .alt-line {
+  margin-top: 16px;
+}
+
 /* FINAL — the yellow send-off */
 .final {
   text-align: center;
