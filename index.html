@@ -91,6 +91,36 @@
     </div>
   </header>
 
+  <!-- ========================= VIDEO ========================= -->
+  <section class="video" id="video">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Watch</span>
+        <h2>Two minutes on why this academy exists</h2>
+      </div>
+
+      <!--
+        Click-to-load YouTube facade — nothing loads from YouTube until "play" is
+        pressed (faster page, no third-party tracking on arrival). js/main.js swaps
+        this poster for the embed on click.
+        TO GO LIVE: replace REPLACE_WITH_YOUTUBE_ID with the video's YouTube ID
+        (the v= value in the watch URL, e.g. dQw4w9WgXcQ). Until then it stays in
+        demo mode and the button does nothing.
+      -->
+      <div class="vid-frame" id="videoEmbed" data-video-id="REPLACE_WITH_YOUTUBE_ID">
+        <!-- The accessible name must contain the visible label, or voice-control
+             users can't say what they see (WCAG 2.5.3 label-in-name). -->
+        <button class="vid-play" type="button" aria-label="Play: Jan explains the academy, 2 min watch">
+          <span class="vid-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+          <span class="vid-label">Jan explains the academy</span>
+          <span class="vid-time">2 min watch</span>
+        </button>
+      </div>
+
+      <a class="btn btn-yellow mid-cta" href="#apply">Join the cohort &rarr;</a>
+    </div>
+  </section>
+
   <!-- ========================= THE GAP ========================= -->
   <section class="gap" id="gap">
     <div class="wrap">
@@ -201,47 +231,13 @@
       </div>
       <div class="tr-copy">
         <span class="eyebrow">Who's teaching</span>
-        <h2>A decade of turning ambition into results</h2>
-        <p>I'm Jan Meskens — I've spent over a decade helping organizations turn Data &amp; AI ambitions into outcomes, drawing from my own experiences guiding leaders through real transformations. I hold a PhD in Human-Computer Interaction, lecture at university level, and deliver keynotes and masterclasses across Europe. This academy distills everything I teach in the room into a format you can join from anywhere in the world.</p>
-        <div class="tr-tags">
-          <span>PhD, Human-Computer Interaction</span>
-          <span>Guest lecturer</span>
-          <span>Keynote speaker</span>
-          <span>10+ years in the field</span>
-        </div>
+        <h2>More than a decade of turning ambition into results</h2>
+        <p>I'm Jan Meskens. I've spent more than a decade helping organizations turn Data &amp; AI ambitions into outcomes, as strategy advisor to leaders in retail, logistics, energy and government. I hold a PhD in Human-Computer Interaction, lecture at university level, and deliver keynotes and masterclasses across the world. This Sprint distills everything I've learned in boardrooms and classrooms into a format you can join from anywhere in the world.</p>
         <a class="btn btn-yellow" href="#apply" style="margin-top:26px">Reserve your seat &rarr;</a>
       </div>
     </div>
   </section>
 
-  <!-- ========================= VIDEO ========================= -->
-  <section class="video" id="video">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">Watch</span>
-        <h2>Two minutes on why this academy exists</h2>
-        <p class="sec-lead">Jan explains what the cohort covers, who it's for, and the thinking behind the 80/20 — in his own words.</p>
-      </div>
-
-      <!--
-        Click-to-load YouTube facade — nothing loads from YouTube until "play" is
-        pressed (faster page, no third-party tracking on arrival). js/main.js swaps
-        this poster for the embed on click.
-        TO GO LIVE: replace REPLACE_WITH_YOUTUBE_ID with the video's YouTube ID
-        (the v= value in the watch URL, e.g. dQw4w9WgXcQ). Until then it stays in
-        demo mode and the button does nothing.
-      -->
-      <div class="vid-frame" id="videoEmbed" data-video-id="REPLACE_WITH_YOUTUBE_ID">
-        <!-- The accessible name must contain the visible label, or voice-control
-             users can't say what they see (WCAG 2.5.3 label-in-name). -->
-        <button class="vid-play" type="button" aria-label="Play: Jan explains the academy, 2 min watch">
-          <span class="vid-disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-          <span class="vid-label">Jan explains the academy</span>
-          <span class="vid-time">2 min watch</span>
-        </button>
-      </div>
-    </div>
-  </section>
 
   <!-- ========================= TESTIMONIALS ========================= -->
   <section>
