@@ -860,6 +860,26 @@ nav {
   font-size: 14.5px;
   margin-top: 6px;
 }
+/* pod exercise — the recurring "what you actually do" line, set off by a
+   hairline so it reads as a distinct beat from the session description */
+.stop .pod {
+  color: var(--fg);
+  font-size: 13.5px;
+  line-height: 1.5;
+  margin-top: 14px;
+  padding-top: 13px;
+  border-top: 1px solid var(--line);
+}
+/* duration — a quiet metadata footer, same treatment as the .wk label above */
+.stop .dur {
+  font-family: var(--disp);
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-top: 12px;
+}
 /* connectors sit in the grid gaps */
 .stop::after {
   content: "";
@@ -1416,6 +1436,7 @@ footer {
 
 /* roadmap snake: row 2 runs right→left under row 1 */
 @media (min-width: 901px) {
+  /* row 2 runs right→left under row 1 … */
   .stop:nth-child(4) {
     grid-column: 3;
     grid-row: 2;
@@ -1427,6 +1448,15 @@ footer {
   .stop:nth-child(6) {
     grid-column: 1;
     grid-row: 2;
+  }
+  /* … then row 3 turns back left→right for the last two stops */
+  .stop:nth-child(7) {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  .stop:nth-child(8) {
+    grid-column: 2;
+    grid-row: 3;
   }
 }
 
