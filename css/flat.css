@@ -589,7 +589,9 @@ nav {
 /* GAP */
 .gap-grid {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  /* the sketch carries the argument here, so it gets the larger share —
+     the copy column is capped by its own max-widths anyway */
+  grid-template-columns: 1fr 1.25fr;
   gap: clamp(32px, 5vw, 60px);
   align-items: center;
 }
@@ -614,79 +616,58 @@ nav {
   box-decoration-break: clone;
 }
 /* Sketch frames — the one place white belongs. The drawings are on paper,
-   pinned to the board; boxing them in white is the point, not an oversight. */
+   pinned to the board; boxing them in white is the point, not an oversight.
+   The white is also load-bearing: the sketches are transparent PNGs, so
+   without it the black linework would sit invisibly on the dark board. */
 .gap-img {
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 20px;
   overflow: hidden;
+  padding: clamp(10px, 1.5vw, 20px);
 }
 .gap-img img {
   display: block;
   width: 100%;
 }
+/* mid-page CTA — sized up from the default pill to hold its own under a
+   full column of display type. Shared by the gap and audience sections. */
+.mid-cta {
+  margin-top: 36px;
+  padding: 17px 34px;
+  font-size: 16.5px;
+  align-self: flex-start; /* don't stretch full width inside a flex column */
+}
+/* .aud-cards already contributes its 22px flex gap, so trim the margin to
+   land on the same 36px rhythm as the gap section */
+.aud-foot {
+  margin-top: 14px;
+}
+.aud-foot .mid-cta {
+  margin-top: 0;
+}
+.aud-alt {
+  margin-top: 16px;
+}
 
-/* 20/80 thesis bar — the spine of the pitch.
-   Yellow now carries the 80%, not the 20%: the marker belongs on the part
-   the academy is actually about. */
-.thesis {
-  margin-top: clamp(44px, 6vw, 68px);
-  border: 2.5px solid var(--yellow);
-  border-radius: 22px;
-  overflow: hidden;
-  background: var(--surface);
-}
-.thesis-bar {
-  display: flex;
-  height: clamp(78px, 9vw, 104px);
+/* the soft "not sure?" fallback — muted copy with a marker-yellow link.
+   Used under the audience cards and below the application form. */
+.alt-line {
   font-family: var(--disp);
-  font-weight: 700;
-}
-.thesis-bar .b20 {
-  flex: 0 0 20%;
-  background: var(--board);
+  font-weight: 600;
+  font-size: 16px;
   color: var(--muted);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 8px;
-  font-size: clamp(15px, 2.1vw, 23px);
-  letter-spacing: -0.01em;
 }
-.thesis-bar .b80 {
-  flex: 1;
-  background: var(--yellow);
-  color: var(--on-yellow);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 12px;
-  font-size: clamp(15px, 2.1vw, 23px);
-  letter-spacing: -0.01em;
-}
-.thesis-legend {
-  display: flex;
-  border-top: 2.5px solid var(--yellow);
-}
-.thesis-legend > div {
-  padding: 18px 24px;
-  font-size: 15.5px;
-}
-.thesis-legend .l20 {
-  flex: 0 0 20%;
-  border-right: 2.5px solid var(--yellow);
-  font-family: var(--disp);
+.alt-line a {
+  color: var(--yellow);
+  text-decoration: none;
   font-weight: 700;
-  font-size: 15px;
-  letter-spacing: 0.005em;
-  min-width: max-content;
-  color: var(--fg);
+  border-bottom: 2px solid rgba(254, 228, 71, 0.45);
+  padding-bottom: 1px;
+  transition: border-color 0.16s;
 }
-.thesis-legend .l80 {
-  flex: 1;
-  color: var(--muted);
+.alt-line a:hover {
+  border-color: var(--yellow);
 }
 
 /* AUDIENCE — two stacked cards on the left, framed sketch on the right.
@@ -1148,21 +1129,6 @@ nav {
 .convert-alt {
   text-align: center;
   margin-top: 36px;
-  font-family: var(--disp);
-  font-weight: 600;
-  font-size: 16px;
-  color: var(--muted);
-}
-.convert-alt a {
-  color: var(--yellow);
-  text-decoration: none;
-  font-weight: 700;
-  border-bottom: 2px solid rgba(254, 228, 71, 0.45);
-  padding-bottom: 1px;
-  transition: border-color 0.16s;
-}
-.convert-alt a:hover {
-  border-color: var(--yellow);
 }
 .info-card {
   background: var(--surface);
@@ -1570,13 +1536,5 @@ footer {
     margin-top: 6px;
     text-align: center;
     justify-content: center;
-  }
-  .thesis-legend {
-    flex-direction: column;
-  }
-  .thesis-legend .l20 {
-    flex: none;
-    border-right: none;
-    border-bottom: 2.5px solid var(--yellow);
   }
 }
