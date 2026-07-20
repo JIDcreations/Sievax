@@ -1,8 +1,11 @@
 # Project context — Sievax Academy landing page (feedback round 2)
 
-Static site, TWO parallel design versions of the SAME page:
-- **Flat** (`index.html` + `css/flat.css`) — "strak"/flat, Poppins, no shadows, pill buttons, hairline borders, generous radii. Mirrors the live sievax.be look.
-- **Illustrative** (`illustrative.html` + `css/illustrative.css`) — hand-drawn/marker feel: thicker ink borders, yellow offset "sticker" box-shadows, slight rotations, marker underlines.
+> **Stale doc.** This was the brief for feedback round 2, when the site shipped
+> as two parallel design versions. The client rejected the illustrative version
+> and it has been deleted — there is now ONE page. Kept for the contracts in
+> "Contracts to PRESERVE"; ignore anything about a second version.
+
+Static site, ONE page: `index.html` + `css/flat.css` — Poppins, no shadows, pill buttons, hairline borders, generous radii. Mirrors the live sievax.be look.
 
 No build step. Preview = serve repo root with `python3 -m http.server`.
 Shared JS: `js/main.js` (mobile nav toggle + lead-form submit) — DO NOT break its hooks (`#leadForm`, `#leadSuccess`, nav toggle).
@@ -32,7 +35,7 @@ Where the reference uses placeholders (`[name]`, `[date]`, `€[X]`, `[N]`, `[ti
 - Keep class names/IDs our JS + anchors rely on: `#leadForm`, `#leadSuccess`, `#apply`, `#program`, `#trainer`, `#gap`/`#problem` nav anchors, `.sticky-cta`, nav toggle. If you rename a section id, update the nav links in the SAME file.
 - Keep the illustration frames we just fixed (`.gap-img`, `.out-illo` image frames) — if outcomes no longer uses `.out-illo`, that's fine, just don't regress the gap illustration.
 - Don't touch global design tokens in a way that changes the whole theme; scope your CSS to the sections you're changing.
-- Preserve each theme's identity (flat vs illustrative). Do NOT edit the other version's files.
+- Don't regress the illustration frames (`.gap-img`).
 
 ## Acceptance criteria
 - All 5 items done, on YOUR version only.

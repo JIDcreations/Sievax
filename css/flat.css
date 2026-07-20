@@ -1,18 +1,17 @@
 /* ============================================================================
-   SIEVAX ACADEMY · Flat theme ("strak")
+   SIEVAX ACADEMY · Stylesheet
    ----------------------------------------------------------------------------
    Production stylesheet. Mirrors sievax.be — Poppins, flat surfaces, no drop
    shadows, pill buttons, generous radii.
 
    Paired page    : index.html
-   Shared scripts : js/main.js  (mobile nav toggle + lead-form submit)
-   Sibling theme  : css/illustrative.css  (hand-drawn preview variant)
+   Shared scripts : js/main.js  (mobile nav toggle + lead-form submit + video)
 
    CONTENTS  (search the label to jump)
      Design tokens · Reset & base · Layout · Accessibility · Text helpers ·
      Buttons · Section heads · NAV · HERO · GAP · AUDIENCE · OUTCOMES ·
      PROGRAM · TRAINER · TESTIMONIALS · CONVERSION · FAQ · FINAL · FOOTER ·
-     CTA band · Mobile sticky CTA · Version switcher · RESPONSIVE
+     CTA band · Mobile sticky CTA · RESPONSIVE
    ============================================================================ */
 
 :root {
@@ -27,15 +26,14 @@
   --disp: "Poppins", sans-serif; /* mirror sievax.be (live site uses Poppins) */
   --body: "Poppins", sans-serif;
   /* soft depth (sievax.be uses soft/no shadow — not hard offset "sticker" shadows) */
-  --shadow: none; /* strak = flat, no shadows */
+  --shadow: none; /* flat — no shadows */
   --shadow-sm: none;
   --radius: 22px;
   /* hand-drawn yellow highlighter swipe (behind key words) */
   --swipe: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20400%2040'%20preserveAspectRatio='none'%3E%3Cpath%20d='M3,9%20C60,4%20140,6%20210,7%20C300,9%20350,3%20397,8%20L396,33%20C330,37%20240,31%20150,33%20C90,34%2045,35%204,31%20Z'%20fill='%23FEE447'/%3E%3C/svg%3E");
   /* hand-drawn black marker underline */
   --uline: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20200%2012'%20preserveAspectRatio='none'%3E%3Cpath%20d='M2,7%20C48,3%20100,10%20150,5%20C170,3%20186,7%20198,5'%20stroke='%23111111'%20stroke-width='2.5'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E");
-  /* hand-drawn marker connector arrows (roadmap) */
-  /* strak = clean straight arrows (the illustrative version keeps the hand-drawn ones) */
+  /* clean straight connector arrows (roadmap) */
   --arrR: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2052%2024'%3E%3Cpath%20d='M2,12%20L44,12%20M37,6%20L46,12%20L37,18'%20stroke='%23111111'%20stroke-width='2'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
   --arrL: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2052%2024'%3E%3Cpath%20d='M50,12%20L8,12%20M15,6%20L6,12%20L15,18'%20stroke='%23111111'%20stroke-width='2'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
   --arrD: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2052'%3E%3Cpath%20d='M12,2%20L12,44%20M6,37%20L12,46%20L18,37'%20stroke='%23111111'%20stroke-width='2'%20fill='none'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
@@ -1432,42 +1430,6 @@ footer {
   display: none;
 }
 
-/* ── PREVIEW-ONLY version switcher (remove before production) ── */
-.vswitch {
-  position: fixed;
-  bottom: 22px;
-  right: 22px;
-  z-index: 200;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--ink);
-  color: #fff;
-  text-decoration: none;
-  font-family: var(--disp);
-  font-weight: 700;
-  font-size: 14px;
-  padding: 10px 16px 10px 12px;
-  border-radius: 999px;
-  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.55);
-  transition:
-    transform 0.16s,
-    background 0.16s;
-}
-.vswitch:hover {
-  transform: translateY(-2px);
-  background: #000;
-}
-.vswitch .tag {
-  background: var(--yellow);
-  color: var(--ink);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 4px 9px;
-  border-radius: 999px;
-}
-
 /* roadmap snake: row 2 runs right→left under row 1 */
 @media (min-width: 901px) {
   .stop:nth-child(4) {
@@ -1553,9 +1515,6 @@ footer {
     width: 100%;
     justify-content: center;
     padding: 14px 24px;
-  }
-  .vswitch {
-    bottom: 86px;
   }
   .nav-toggle {
     display: flex;
