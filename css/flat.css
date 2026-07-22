@@ -347,7 +347,7 @@ nav {
   align-items: center;
   padding: 12px 4px;
 }
-.nav-links a:hover {
+.nav-links a:hover:not(.nav-cta) {
   color: var(--yellow);
 }
 .nav-cta {
